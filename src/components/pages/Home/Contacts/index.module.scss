@@ -1,0 +1,27 @@
+.Root {
+	background-image: url('/bg/backgroundContactsMax.png');
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.Root > * {
+	text-align: center;
+}
+
+.Root :is(p, h2, h3) {
+	@include text1($blueText);
+}
+
+.Root p:nth-last-child(-n + 3) {
+	margin-top: 1.5rem;
+}
+
+.Root h3:not(:first-child) {
+	margin-top: 1.5rem;
+}
+
+.Root > h2 {
+	@include heading2;
+	margin-top: 1rem;
+}

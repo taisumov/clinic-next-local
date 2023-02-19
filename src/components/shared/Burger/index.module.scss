@@ -1,0 +1,47 @@
+/* stylelint-disable max-nesting-depth */
+
+$hamburgerWidth: 28px;
+$barHeight: 4px;
+$spaceBars: $hamburgerWidth - $barHeight * 3;
+
+.Hamburger {
+	cursor: pointer;
+	height: 24px;
+	position: fixed;
+	right: 30px;
+	top: 30px;
+	user-select: none;
+	width: $hamburgerWidth;
+	z-index: 9;
+	@media only screen and (min-width: $breakpointBurger) {
+		display: none;
+	}
+
+	span {
+		position: relative;
+
+		&,
+		&::before,
+		&::after {
+			background-color: $burgerBars;
+			border-radius: 4px;
+			height: $barHeight;
+			width: $hamburgerWidth;
+		}
+
+		&::before,
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+		}
+
+		&::before {
+			bottom: -10px;
+		}
+
+		&::after {
+			bottom: -20px;
+		}
+	}
+}

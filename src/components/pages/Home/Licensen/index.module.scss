@@ -1,0 +1,71 @@
+@use 'sass:color';
+
+.navigationWrapper {
+	padding-inline: 1rem;
+	position: relative;
+}
+
+.licensen > h2 {
+	@include heading2(700);
+	margin-bottom: 1.5rem;
+	margin-top: 2rem;
+	padding-left: var(--space-80);
+}
+
+.licensen :is([class^='number-slide'], [class*='number-slide']) {
+	@include text1($light, 500);
+	align-items: center;
+	aspect-ratio: 0.7;
+	background: hsl(0, 0%, 50%);
+	display: flex;
+	justify-content: center;
+	// max-height: 230px;
+}
+
+//===========================================
+//============= nav =========================
+//===========================================
+
+.dots {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	padding: 15px;
+}
+
+$arrowSize: 54px;
+$lightGray: color.adjust($gray, $alpha: -0.2);
+
+.dot {
+	$dotSize: fluid(10, 20);
+	background: $gray;
+	border: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	height: $dotSize;
+	margin: 0 5px;
+	padding: 5px;
+	width: $dotSize;
+	@include respondAbove(400px) {
+		display: none;
+	}
+}
+
+.dot:focus {
+	outline: none;
+}
+
+.dot.active {
+	background: $light;
+}
+
+.arrow {
+	cursor: pointer;
+	fill: $light;
+	height: $arrowSize;
+	width: $arrowSize;
+}
+
+.arrowRight {
+	transform: rotate(180deg);
+}

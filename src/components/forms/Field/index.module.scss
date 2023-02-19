@@ -1,0 +1,23 @@
+@mixin labelFont {
+	font-family: var(--roboto);
+	font-size: rem(18);
+	font-weight: 800;
+	text-transform: capitalize;
+}
+
+.Root {
+	display: grid;
+}
+
+.Input {
+	background: $SpringWood;
+	border: 1px solid $Zircon;
+	border-radius: 16px;
+	padding: 0.5rem;
+}
+
+.Label {
+	@include labelFont();
+	justify-self: center;
+	margin-bottom: rem(8);
+}

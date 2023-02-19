@@ -1,0 +1,52 @@
+.Root {
+	@extend %container;
+}
+
+.main {
+	background-color: #f5f0eb;
+	background-image: url('/images/bigbg.png');
+	margin-inline: auto;
+	max-width: rem(1440);
+	padding-inline: fluid(15, 50, 'vw', 420);
+}
+
+.hr {
+	border-top: 1px solid #f8fcff;
+	height: 1px;
+	width: 100%;
+}
+
+.title {
+	align-items: center;
+	color: $dark;
+	display: flex;
+	flex-direction: column;
+	font-size: rem(38);
+	font-weight: 600;
+	line-height: 1.2;
+	padding-bottom: rem(36);
+	padding-top: rem(36);
+}
+
+.services {
+	padding-bottom: rem(100);
+
+	&__list {
+		align-content: stretch;
+		display: grid;
+
+		gap: max(0.5em, 1.5vw);
+		grid-auto-rows: 1fr;
+		grid-template-columns: repeat(3, 3fr);
+		justify-content: center;
+		list-style-type: none;
+		padding: 0;
+
+		@media screen and (max-width: 991px) {
+			grid-template-columns: repeat(2, 2fr);
+		}
+		@media screen and (max-width: 600px) {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+}

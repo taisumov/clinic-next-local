@@ -1,0 +1,27 @@
+.footer {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 50px;
+	position: relative;
+}
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: rem(30);
+	justify-content: center;
+	list-style: none;
+	padding-bottom: fluid(40, 490);
+	padding-top: fluid(40, 230);
+	z-index: 1;
+
+	@media screen and (min-width: 500px) {
+		gap: rem(100);
+	}
+}
+
+.listItem a {
+	@include scaleHover;
+	font-size: fluid(15, 24);
+	font-weight: 600;
+}

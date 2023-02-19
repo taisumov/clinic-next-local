@@ -1,0 +1,101 @@
+@use 'sass:color';
+
+.navigationWrapper {
+	position: relative;
+}
+
+.promotion {
+	background-image: url('/bg/newsAndPromoBg.png');
+	background-position: -25px -70px;
+	background-repeat: no-repeat;
+}
+
+.promotion > h2 {
+	@include heading2(600);
+	margin-bottom: 1.7rem;
+	margin-top: 1.2rem;
+	padding-left: var(--space-80);
+}
+
+.promotion :is([class^='number-slide'], [class*='number-slide']) {
+	@include text1($light, 500);
+	align-items: center;
+	background: hsl(0, 0%, 50%);
+	display: flex;
+	height: clamp(300px, 60vh, 800px);
+	justify-content: center;
+	max-height: 700px;
+	max-height: 100vh;
+}
+
+//===========================================
+//============= dots ========================
+//===========================================
+
+.dots {
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	left: 50%;
+	padding-bottom: rem(30);
+	position: absolute;
+	transform: translatex(-50%);
+}
+
+.dot {
+	$dotSize: fluid(10, 20);
+	background: $gray;
+	border: 0;
+	border-radius: 50%;
+	cursor: pointer;
+	height: $dotSize;
+	margin: 0 5px;
+	padding: 5px;
+	width: $dotSize;
+}
+
+.dot:focus {
+	outline: none;
+}
+
+.dot.active {
+	background: $light;
+}
+
+//===========================================
+//============= arrow =======================
+//===========================================
+
+$arrowSize: 100%;
+$arrowSizBig: fluid(40, 50);
+$lightGray: color.adjust($gray, $alpha: -0.2);
+$arrowSpace: fluid(5, 20);
+
+.arrowWrap {
+	background-color: $lightGray;
+	border-radius: 50%;
+	box-shadow: 0 0 7px 5px $lightGray;
+	cursor: pointer;
+	height: $arrowSizBig;
+	padding: rem(10);
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: $arrowSizBig;
+}
+
+.arrow {
+	fill: $light;
+	height: $arrowSize;
+
+	width: $arrowSize;
+}
+
+.arrowLeft {
+	left: $arrowSpace;
+}
+
+.arrowRight {
+	left: auto;
+	right: $arrowSpace;
+}

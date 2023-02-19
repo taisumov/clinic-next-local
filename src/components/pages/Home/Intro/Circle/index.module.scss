@@ -1,0 +1,70 @@
+.Root {
+	border-radius: 50%;
+
+	color: white;
+	cursor: pointer;
+	position: relative;
+
+	&:hover {
+		.text {
+			color: rgb(24, 91, 207);
+		}
+	}
+}
+
+.image {
+	border-radius: 50%;
+}
+
+.text {
+	color: #000;
+	// transform: translate(60%, 30px);
+	cursor: pointer;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 700;
+	text-align: center;
+	transition: color 0.3s;
+	width: 150px;
+
+	@include respondBelow(1200px) {
+		font-size: 18px;
+		transform: translate(70%, 30px);
+	}
+	@include respondBelow(991px) {
+		font-size: 16px;
+		transform: translate(40%, 30px);
+		width: 140px;
+	}
+	@include respondBelow(768px) {
+		font-size: 14px;
+		transform: translate(40%, 20px);
+		width: 100px;
+	}
+	@include respondBelow(768px) {
+		font-size: 12px;
+		width: 70px;
+	}
+}
+
+.left {
+	transform: translate(60%, 30px);
+
+	@include respondBelow(768px) {
+		transform: translate(40%, 60px);
+	}
+	@include respondBelow(580px) {
+		transform: translate(0%, 40px);
+	}
+}
+
+.right {
+	transform: translate(-110%, 30px);
+
+	@include respondBelow(768px) {
+		transform: translate(-60%, 70px);
+	}
+	@include respondBelow(580px) {
+		transform: translate(-50%, 40px);
+	}
+}

@@ -1,0 +1,12 @@
+.Root {
+	font-size: fluid(14, 18, 'vw', 420, 830);
+	font-weight: 800;
+
+	text-transform: capitalize;
+	/* stylelint-disable */
+	background: linear-gradient(180deg, #015991 0%, #3e819f 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	text-fill-color: transparent;
+}

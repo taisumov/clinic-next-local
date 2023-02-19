@@ -1,0 +1,33 @@
+.Root {
+	display: flex;
+	font-size: 20px;
+	justify-content: center;
+	position: relative;
+	z-index: 3;
+}
+
+.image {
+	object-fit: contain;
+	position: absolute;
+}
+
+.circle {
+	@include distribute-on-circle(6, 40rem, 5rem);
+	background-image: url('/7.png');
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	background-size: contain;
+
+	@include respondBelow(1050px) {
+		@include distribute-on-circle(6, 30rem, 5rem);
+	}
+	@include respondBelow(768px) {
+		@include distribute-on-circle(6, 25rem, 3.5rem);
+	}
+	@include respondBelow(580px) {
+		@include distribute-on-circle(6, 22rem, 2.5rem);
+	}
+	@include respondBelow(400px) {
+		@include distribute-on-circle(6, 18rem, 2.2rem);
+	}
+}

@@ -1,0 +1,37 @@
+@use 'sass:math';
+
+@mixin distribute-on-circle($nb-items, $circle-size, $item-size) {
+	$half-item: math.div($item-size, 2);
+	$half-parent: math.div($circle-size, 2);
+
+	$angle: math.div(-180, $nb-items);
+	$rot: 165;
+	border-radius: 50%;
+	box-sizing: content-box;
+	height: $circle-size;
+	list-style: none;
+	padding: 0;
+
+	position: relative;
+	width: $circle-size;
+
+	> * {
+		display: block;
+		height: $item-size;
+		left: 50%;
+		margin: -$half-item;
+		position: absolute;
+		top: 50%;
+		width: $item-size;
+	}
+
+	@for $i from 1 through $nb-items {
+		> :nth-of-type(#{$i}) {
+			transform: rotate($rot * 1deg)
+				translate($half-parent - 3)
+				rotate($rot * -1deg);
+		}
+
+		$rot: ($rot + $angle);
+	}
+}

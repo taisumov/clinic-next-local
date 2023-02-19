@@ -1,0 +1,71 @@
+.Sidebar {
+	align-items: center;
+	background: $sidebar-bg;
+	color: $dark;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	padding: 7px;
+	position: fixed;
+	right: -100%;
+	top: 0;
+	transition: all 0.3s ease;
+	width: 100%;
+	z-index: 1001;
+}
+
+.SidebarActive {
+	right: 0;
+}
+
+.SidebarMenuItem {
+	font-size: 24px;
+	font-weight: 500;
+	opacity: 0.8;
+	padding: 5px 10px;
+	text-align: center;
+	transition: opacity 0.3s ease;
+
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.SidebarBottom {
+	margin-top: 150px;
+	text-align: center;
+
+	button {
+		background: linear-gradient(180deg, #0584d7 0%, #3abdf5 100%);
+		border: 1px solid #fdfeff;
+		border-radius: 16px;
+		color: $light;
+		cursor: pointer;
+		display: block;
+		font-weight: 500;
+		height: 44px;
+		margin: 0 auto;
+		outline: none;
+		text-align: center;
+		transition: all 0.3s ease;
+		width: 272px;
+
+		&:hover {
+			border: 1px solid #0584d7;
+		}
+	}
+
+	a {
+		font-size: 24px;
+		font-weight: 500;
+		opacity: 0.8;
+		padding: 5px 10px;
+		text-align: center;
+		transition: opacity 0.3s ease;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}

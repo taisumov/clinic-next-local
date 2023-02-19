@@ -1,0 +1,36 @@
+.Root {
+	@include heading2(500);
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+
+	flex-shrink: 0;
+
+	// @include respondBelow($breakpointBurger) {
+	// 	display: none;
+	// }
+}
+
+.Phone {
+	@include text1(400);
+	@include scaleHover;
+	@include respondBelow($breakpointBurger) {
+		display: none;
+	}
+}
+
+.Button {
+	@include darkenHover;
+	@include text1(500);
+	background: linear-gradient(180deg, #0584d7 0%, #3abdf5 100%);
+	border: 1px solid #fdfeff;
+	border-radius: 16px;
+	cursor: pointer;
+	padding: rem(5) rem(15);
+}
+
+.hide {
+	@include respondBelow($breakpointBurger) {
+		font-size: 14px;
+	}
+}

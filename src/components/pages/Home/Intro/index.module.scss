@@ -1,0 +1,27 @@
+$introBottomGap: 20px;
+
+.Intro {
+	background-image: url('/bg/introBg.jpg');
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-bottom: $introBottomGap solid $light;
+	min-height: calc(100vh - #{$layoutTopPadding} + #{$introBottomGap});
+
+	@include respondBelow(830px) {
+		min-height: calc(60vh - #{$layoutTopPadding} + #{$introBottomGap});
+	}
+	@include respondBelow(580px) {
+		min-height: calc(40vh - #{$layoutTopPadding} + #{$introBottomGap});
+	}
+}
+
+.Image {
+	z-index: 0;
+}
+
+.CategoryList,
+.HomeBtn {
+	position: relative;
+	z-index: 1;
+}

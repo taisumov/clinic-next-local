@@ -1,0 +1,124 @@
+.price__item {
+  display: flex;
+  flex-direction: row;
+  gap: rem(50);
+  position: relative;
+
+  @media screen and (max-width: 700px) {
+    border-radius: 16px;
+    flex-direction: column;
+    gap: 0;
+
+    &::after {
+      align-items: center;
+      background-image: url('/images/arrow-right.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: '';
+      display: flex;
+      height: 30px;
+      justify-content: center;
+      position: absolute;
+      right: 20px;
+      top: 30px;
+      width: 30px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    &::after {
+      align-items: center;
+      background-image: url('/images/arrow-right.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: '';
+      display: flex;
+      height: 30px;
+      justify-content: center;
+      position: absolute;
+      right: 20px;
+      top: 40px;
+      width: 30px;
+    }
+  }
+
+  &::before {
+    content: '';
+    height: 2px;
+    position: absolute;
+    width: 100%;
+  }
+
+  &:nth-child(1) {
+    .price__name {
+      background: rgba(0, 151, 225, 0.27);
+    }
+
+    .price__cost {
+      background: #b3d8e8;
+    }
+  }
+
+  &:nth-child(2) {
+    .price__name {
+      background: #f4ebd3;
+    }
+
+    .price__cost {
+      background: #f4ebd3;
+    }
+  }
+
+  &:nth-child(3) {
+    .price__name {
+      background: rgba(253, 254, 254, 0.56);
+    }
+
+    .price__cost {
+      backgrpound: rgba(255, 255, 255, 0.56);
+    }
+  }
+}
+
+.price__name {
+  flex-basis: 80%;
+  padding: 10px 10px 10px 40px;
+  transform: scale(1);
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.price__cost {
+  align-items: center;
+  display: flex;
+  flex-basis: 20%;
+  justify-content: center;
+  padding: 10px;
+
+  @media screen and (max-width: 700px) {
+    justify-content: flex-start;
+    padding: 10px 10px 10px 40px;
+  }
+}
+
+.price__name,
+.price__cost {
+  border-radius: 16px;
+
+  color: $dark;
+  font-size: rem(24);
+  font-weight: 500;
+  line-height: 1.2;
+
+  @media screen and (max-width: 1100px) {
+    font-size: rem(20);
+  }
+
+  @media screen and (max-width: 700px) {
+    background: none !important;
+    justify-content: flex-start;
+  }
+}

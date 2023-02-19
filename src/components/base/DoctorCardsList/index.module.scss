@@ -1,0 +1,12 @@
+.cards {
+  align-content: stretch;
+  display: grid;
+
+  gap: max(1.4em, 2.5vw);
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(1, 1fr);
+
+  @media screen and (max-width: 768px) {
+    gap: max(5.4em, 6.5vw);
+  }
+}

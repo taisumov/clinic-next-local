@@ -1,0 +1,32 @@
+.Root {
+	background-image: url('/bg/aboutusBackgroundMax.png');
+	background-position: 40% -25px;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.Root > * {
+	text-align: center;
+}
+
+.Root p {
+	@include text1(400);
+
+	margin-top: 1.5rem;
+	z-index: 1;
+}
+
+.Root > h2 {
+	@include heading2L;
+	margin-top: 2rem;
+	z-index: 1;
+}
+
+.image {
+	left: 0;
+	max-height: 100%;
+	max-width: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 0;
+}

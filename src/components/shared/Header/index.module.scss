@@ -1,0 +1,40 @@
+.bgHeader {
+	// background-image: url('/assets/intro/blur-field-texture.jpg');
+	// background-position: center;
+	// background-size: cover;
+}
+
+.Header {
+	align-items: center;
+	display: flex;
+	gap: 2px;
+	justify-content: space-between;
+	margin-inline: auto;
+	max-width: var(--content-width);
+	padding-inline: var(7);
+	padding-right: rem(35);
+	padding-top: rem(15);
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+
+	@include respondAbove($breakpointBurger) {
+		border-bottom: 16px solid #0072ba29;
+		gap: 4%;
+		padding-inline: rem(50);
+	}
+}
+
+.Contacts,
+.News {
+	@include text1(400);
+	@include scaleHover;
+}
+
+.hide {
+	display: none;
+	@include respondAbove($breakpointBurger) {
+		display: block;
+	}
+}

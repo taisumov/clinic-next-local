@@ -1,0 +1,7 @@
+.Root {
+	padding-block: 1rem;
+}
+
+.Container {
+	@include container;
+}
