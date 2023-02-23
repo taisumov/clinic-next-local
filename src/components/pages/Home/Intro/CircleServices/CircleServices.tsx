@@ -1,11 +1,16 @@
 import { useState } from 'react';
 
+import {useDataContext} from "@/context/DataContext";
+
 import { Circle, CircleWithIcon } from '../Circle';
 import { services } from '../constants';
 
 import cx from './index.module.scss';
 
+
+
 export const CircleServices = () => {
+	const { categories } = useDataContext();
 	const [uslugi, setUslugi] = useState(services);
 
 	const deeep = (uuu: any) => {

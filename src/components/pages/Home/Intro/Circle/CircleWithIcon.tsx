@@ -7,11 +7,9 @@ import {useDataContext} from "@/context/DataContext";
 
 export const CircleWithIcon = ({ imgSrc, text, rightSide, href }: any) => {
 
-	const { about } = useDataContext();
-
 	return (
 		<li className={cx('Root')}>
-			<Link href={{pathname: href, query: JSON.stringify(about)}}>
+			<Link href={href}>
 				<Image className={cx('image')} alt="picture" src={imgSrc} fill/>
 				<p className={cx('text', rightSide ? 'right' : 'left')}>{text}</p>
 			</Link>
