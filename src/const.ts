@@ -1518,7 +1518,7 @@ export const data = {
 	meta: { pagination: { page: 1, pageSize: 25, pageCount: 1, total: 1 } },
 };
 
-export const promotions = {
+export const promotion = {
 	data: [
 		{
 			id: 1,
@@ -9201,10 +9201,10 @@ export const promotions = {
 		{
 			id: 1,
 			attributes: {
-				createdAt: '2023-02-23T18:42:33.675Z',
-				updatedAt: '2023-02-23T18:42:42.261Z',
-				publishedAt: '2023-02-23T18:42:42.258Z',
-				images: {
+				createdAt: '2023-02-24T17:39:18.884Z',
+				updatedAt: '2023-02-24T17:39:19.478Z',
+				publishedAt: '2023-02-24T17:39:19.474Z',
+				image: {
 					data: [
 						{
 							id: 1,

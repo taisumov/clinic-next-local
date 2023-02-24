@@ -11,7 +11,7 @@ export const ServicesList = ({ arr }: any) => (
 			{arr?.attributes?.receptions.data.map((elem: any) => (
 				<Card
 					key={elem.id}
-					href={`/reception?service=${elem.id}`}
+					href={`/reception?service=${Number(elem.id)}`}
 					descr={elem.attributes.link}
 				/>
 			))}

@@ -1,5 +1,5 @@
 import { useKeenSlider } from 'keen-slider/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Heading } from '@/components/base/Heading';
 import { Img } from '@/components/base/Img';
@@ -12,8 +12,6 @@ import { useDataContext } from '@/context/DataContext';
 import cx from './index.module.scss';
 
 export const Promotion = ({ data }: any) => {
-	const { promotion } = useDataContext();
-
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [loaded, setLoaded] = useState(false);
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
@@ -61,19 +59,23 @@ export const Promotion = ({ data }: any) => {
 		]
 	);
 
+	useEffect(() => {
+		console.log(sliderRef);
+	}, []);
+
 	return (
 		<Region className={cx('promotion')} id="promo">
 			<Heading className={cx('heading')}>Новости и акции</Heading>
 			<div className={cx('navigationWrapper')}>
 				<div ref={sliderRef} className="keen-slider">
-					{promotion.map(({ promotion, attributes }: any) => (
+					{data?.map(({ promotion, index }: any) => (
 						<div
-							key={promotion.id}
-							className="keen-slider__slide number-slide1"
+							key={promotion?.id}
+							className={`keen-slider__slide number-slide1`}
 						>
 							<Img
-								src={promotion.attributes.images.data.attributes.url}
-								alt={attributes.alternativeText ?? ''}
+								src={promotion?.attributes.images.data.attributes.url}
+								alt={''}
 								fill
 								sizes="100vw"
 								style={{
@@ -103,7 +105,7 @@ export const Promotion = ({ data }: any) => {
 				{loaded && instanceRef.current && (
 					<div className={cx('dots')}>
 						{[
-							...Array(instanceRef.current.track.details.slides.length).keys(),
+							...Array(instanceRef.current.track.details?.slides.length).keys(),
 						].map((idx) => (
 							<button
 								key={idx}
