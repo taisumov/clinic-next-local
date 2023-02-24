@@ -1,12 +1,13 @@
+import { useRouter } from 'next/router';
+
 import { PriceBlock } from '@/components/base/PriceBlock';
 import { Region } from '@/components/base/Region';
-import { useRouter } from 'next/router';
 
 import cx from './index.module.scss';
 
 export const Service = ({ priceList, path }: any) => {
 	const data = priceList?.data.find(
-		(service: any) => service.id === +path.service
+		(service: any) => service.id === Number(path.service)
 	);
 
 	return (

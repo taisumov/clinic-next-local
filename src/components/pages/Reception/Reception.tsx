@@ -1,5 +1,7 @@
 import parse from 'html-react-parser';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import { DoctorCardsList } from '@/components/base/DoctorCardsList';
 import { Heading } from '@/components/base/Heading';
@@ -11,8 +13,7 @@ import { SERVICES_LIST_SERVICE } from '../Services/constants';
 import { HEADING } from './constants/constants';
 
 import cx from './index.module.scss';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+
 
 const TITLE = 'Услуги гинекологии';
 const BUTTON = 'Прескурант';
@@ -20,7 +21,7 @@ const BUTTON_TEXT = 'Подробнее...';
 const SERVICES_LIST = 'Ведущие специалисты';
 
 export const Reception = ({ receptions, path }: any) => {
-	let data = receptions.data.find((recept: any) => recept.id === +path.service);
+	const data = receptions.data.find((recept: any) => recept.id === Number(path.service));
 	console.log(data, '213');
 
 	return (
