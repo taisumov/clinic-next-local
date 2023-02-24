@@ -20,8 +20,12 @@ export const getStaticProps = (async () => {
 		fetchApi<About>('/abouts'),
 		fetchApi<Promotion>('/promotions', { urlParamsObject: { populate: '*' } }),
 		fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
-		fetchApi<Categories>('/categories'),
+		fetchApi<Categories>('/categories', {
+			urlParamsObject: { populate: 'deep' },
+		}),
 	]);
+
+	console.log(promotion, '2');
 
 	return {
 		props: {
@@ -46,13 +50,12 @@ const Home = ({
 		value={{
 			contacts,
 			about,
-			promotion: promotion.images.data,
-			licensen: licensen.images.data,
-			categories: categories.categories,
+			promotion: promotion.data,
+			licensen: licensen.data,
+			categories,
 		}}
 	>
 		<HomePage />
-
 	</DataContext.Provider>
 );
 

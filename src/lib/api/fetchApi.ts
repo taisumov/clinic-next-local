@@ -14,11 +14,11 @@ interface Api {
 export async function fetchApi<TResponse>(
 	path: string,
 	init: ApiOptionsObj = {}
-): Promise<TResponse> {
+): Promise<TResponse | any> {
 	const { urlParamsObject, options, fullData } = init;
 
 	const requestUrl = getFullUrl(path, urlParamsObject ?? {});
-
+	console.log(requestUrl);
 	const response = await fetch(requestUrl, options);
 
 	if (!response.ok) {
@@ -34,5 +34,5 @@ export async function fetchApi<TResponse>(
 		data: Array<Record<'attributes', TResponse>>;
 	};
 
-	return data.data[0].attributes;
+	return data;
 }

@@ -17,6 +17,9 @@
 	background-position: bottom center;
 	background-repeat: no-repeat;
 	background-size: contain;
+	img {
+		object-fit: cover;
+	}
 
 	@include respondBelow(1050px) {
 		@include distribute-on-circle(6, 30rem, 5rem);

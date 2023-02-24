@@ -1,5 +1,26 @@
 import { Reception } from '@/components/pages/Reception';
+import { fetchApi } from '@/lib/api/fetchApi';
+import { GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 
-const ReseptionPage = () => <Reception />;
+export const getStaticProps = (async () => {
+	const [receptions] = await Promise.all([
+		fetchApi('/receptions', {
+			urlParamsObject: { populate: 'deep' },
+		}), //найти reception по id
+	]);
+
+	return {
+		props: {
+			receptions,
+		},
+		revalidate: 1,
+	};
+}) satisfies GetStaticProps;
+
+const ReseptionPage = ({ receptions }: any) => {
+	const router = useRouter();
+	return <Reception receptions={receptions} path={router.query} />;
+};
 
 export default ReseptionPage;

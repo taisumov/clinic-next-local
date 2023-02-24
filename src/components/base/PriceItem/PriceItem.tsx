@@ -1,16 +1,13 @@
 import cx from './index.module.scss';
 
 interface PriceItemProps {
-	href: string;
-	text: string;
-	cost: string;
+	name: string;
+	price: string;
 }
 
-export const PriceItem = ({ href, text, cost }: PriceItemProps) => (
+export const PriceItem = ({ name, price }: PriceItemProps) => (
 	<div className={cx('price__item')}>
-		<a href={href} className={cx('price__name')}>
-			{text}
-		</a>
-		<p className={cx('price__cost')}>{cost}</p>
+		<div className={cx('price__name')}>{name}</div>
+		<p className={cx('price__cost')}>{price}</p>
 	</div>
 );

@@ -42,7 +42,12 @@ export interface LicensenResponse extends GenericResponse<Licensen> {}
 
 export interface Category {
 	name: string;
-	subCategories: string[];
+	subItems: string[];
+	id: number;
+	bg: any; // TODO - сменить тип
+	text: string;
+	rightSide: boolean;
+	href: string;
 }
 
 export interface Categories {

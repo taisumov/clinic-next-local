@@ -38,6 +38,7 @@ export interface ImagesDatum {
 }
 
 export interface ImageAttributes {
+	attributes: any;
 	name: string;
 	alternativeText: null; // нужное
 	caption: null;
