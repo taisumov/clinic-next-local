@@ -15,26 +15,22 @@ import {
 } from '@/types/http/homePage.type';
 
 export const getStaticProps = (async () => {
-	// const [contacts, about, promotion, licensen, categories] = await Promise.all([
-	// 	fetchApi<Contacts>('/contacts'),
-	// 	fetchApi<About>('/abouts'),
-	// 	fetchApi<Promotion>('/promotions', { urlParamsObject: { populate: '*' } }),
-	// 	fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
-	// 	fetchApi<Categories>('/categories', {
-	// 		urlParamsObject: { populate: 'deep' },
-	// 	}),
-	// ]);
-
-	const categories = await fetchApi<Categories>('/categories', {
-		urlParamsObject: { populate: 'deep' },
-	})
+	const [contacts, about, promotion, licensen, categories] = await Promise.all([
+		fetchApi<Contacts>('/contacts'),
+		fetchApi<About>('/abouts'),
+		fetchApi<Promotion>('/promotions', { urlParamsObject: { populate: '*' } }),
+		fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
+		fetchApi<Categories>('/categories', {
+			urlParamsObject: { populate: 'deep' },
+		}),
+	]);
 
 	return {
 		props: {
-			contacts: '' as any,
-			about: '' as any,
-			promotion: '' as any,
-			licensen: '' as any,
+			contacts,
+			about,
+			promotion,
+			licensen,
 			categories,
 		},
 		revalidate: 1,
