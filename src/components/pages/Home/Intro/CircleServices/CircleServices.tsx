@@ -1,17 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import {useDataContext} from "@/context/DataContext";
+import { useDataContext } from '@/context/DataContext';
 
 import { Circle, CircleWithIcon } from '../Circle';
 import { services } from '../constants';
 
 import cx from './index.module.scss';
 
-
-
 export const CircleServices = () => {
 	const { categories } = useDataContext();
-	const [uslugi, setUslugi] = useState(services);
+	const [uslugi, setUslugi] = useState(categories.data);
 
 	const deeep = (uuu: any) => {
 		setUslugi(uuu);
@@ -20,27 +18,27 @@ export const CircleServices = () => {
 	return (
 		<div className={cx('Root')}>
 			<ul className={cx('circle')}>
-				{uslugi.map((item) => {
-					if (item?.subItems) {
+				{uslugi.map((item: any, index: number) => {
+					if (item.attributes?.subcategories) {
 						return (
 							<Circle
 								onClick={deeep}
-								subItems={item.subItems}
+								subItems={item.attributes.subcategories.data}
 								key={item.id}
-								imgSrc={item.bg}
-								text={item.text}
-								rightSide={item.rightSide}
+								imgSrc={item.attributes.bg.data.attributes.url}
+								text={item.attributes.text}
+								rightSide={index < uslugi.length / 2}
 							/>
 						);
 					}
 
 					return (
 						<CircleWithIcon
-							href={item.href}
+							href={item.attributes.href}
 							key={item.id}
-							imgSrc={item.bg}
-							text={item.text}
-							rightSide={item.rightSide}
+							imgSrc={item.attributes.bg.data.attributes.url}
+							text={item.attributes.text}
+							rightSide={index < uslugi.length / 2}
 						/>
 					);
 				})}

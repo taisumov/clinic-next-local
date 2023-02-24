@@ -1,225 +1,227 @@
 .cards__item {
-  background: #b6cddc;
-  border: 3px solid hsl(199, 76%, 52%);
-  border-radius: 100px;
-  display: flex;
-  justify-content: space-between;
-  padding: rem(50);
-  position: relative;
+	background: #b6cddc;
+	border: 3px solid hsl(199, 76%, 52%);
+	border-radius: 100px;
+	display: flex;
+	justify-content: space-between;
+	padding: rem(50);
+	position: relative;
 
-  @media screen and (max-width: 768px) {
-    align-items: center;
-    background: #b6cddc00;
-    border: none;
-    flex-direction: column;
-    gap: rem(20);
-    padding: 0;
-  }
+	@media screen and (max-width: 768px) {
+		align-items: center;
+		background: #b6cddc00;
+		border: none;
+		flex-direction: column;
+		gap: rem(20);
+		padding: 0;
+	}
 }
 
 .whiteTextBold {
-  color: $light;
-  font-size: rem(30);
-  font-weight: 600;
+	color: $light;
+	font-size: rem(30);
+	font-weight: 600;
 
-  @media screen and (max-width: 768px) {
-    font-size: rem(40);
-  }
+	@media screen and (max-width: 768px) {
+		font-size: rem(40);
+	}
 }
 
-
 .cards__picture {
-  height: rem(400);
-  position: relative;
-  width: rem(300);
+	height: rem(400);
+	position: relative;
+	width: rem(300);
+	img {
+		object-fit: cover;
+	}
 
-  @media screen and (max-width: 1030px) {
-    height: rem(300);
-    width: rem(200);
-  }
+	@media screen and (max-width: 1030px) {
+		height: rem(300);
+		width: rem(200);
+	}
 }
 
 .cards__picture-overlay {
-  border: 3px solid #fff;
-  border-radius: 0 140px;
-  bottom: -4px;
-  height: rem(300);
-  left: -4px;
-  position: absolute;
-  width: rem(320);
-  z-index: 1;
+	border: 3px solid #fff;
+	border-radius: 0 140px;
+	bottom: -4px;
+	height: rem(300);
+	left: -4px;
+	position: absolute;
+	width: rem(320);
+	z-index: 1;
 
-  @media screen and (max-width: 1030px) {
-    bottom: -10px;
-    height: rem(300);
-    width: rem(200);
-  }
+	@media screen and (max-width: 1030px) {
+		bottom: -10px;
+		height: rem(300);
+		width: rem(200);
+	}
 
-  @media screen and (max-width: 768px) {
-    transform: rotate(-15deg);
-  }
+	@media screen and (max-width: 768px) {
+		transform: rotate(-15deg);
+	}
 }
 
 .img {
-  border-radius: 0 140px;
-  bottom: 0;
-  height: auto;
-  position: absolute;
-  right: 0;
-  width: 100%;
-  z-index: 2;
+	border-radius: 0 140px;
+	bottom: 0;
+	height: auto;
+	position: absolute;
+	right: 0;
+	width: 100%;
+	z-index: 2;
 
-  @media screen and (max-width: 1030px) {
-    bottom: 0;
-    height: rem(300);
-    width: rem(200);
-  }
+	@media screen and (max-width: 1030px) {
+		bottom: 0;
+		height: rem(300);
+		width: rem(200);
+	}
 
-  @media screen and (max-width: 768px) {
-    border-radius: 20px;
-  }
+	@media screen and (max-width: 768px) {
+		border-radius: 20px;
+	}
 }
 
 .cards__text {
-  flex-basis: 70%;
-  height: rem(400);
+	flex-basis: 70%;
+	height: rem(400);
 
-  overflow-y: scroll;
+	overflow-y: scroll;
 
-  @media screen and (max-width: 1400px) {
-    flex-basis: 59%;
-  }
+	@media screen and (max-width: 1400px) {
+		flex-basis: 59%;
+	}
 
-  @media screen and (max-width: 768px) {
-    background: #b6cddc;
-    flex-basis: 66%;
-    height: rem(30);
-    overflow-y: auto;
-    padding: rem(40);
-  }
+	@media screen and (max-width: 768px) {
+		background: #b6cddc;
+		flex-basis: 66%;
+		height: rem(30);
+		overflow-y: auto;
+		padding: rem(40);
+	}
 
-  @media screen and (max-width: 420px) {
-    padding: rem(20);
-  }
+	@media screen and (max-width: 420px) {
+		padding: rem(20);
+	}
 
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 157, 233, 0.4);
-    border: 1px solid #fff;
-    border-radius: 80px;
-  }
+	&::-webkit-scrollbar-track {
+		background: rgba(0, 157, 233, 0.4);
+		border: 1px solid #fff;
+		border-radius: 80px;
+	}
 
-  &::-webkit-scrollbar-thumb {
-    background: rgb(197 219 233 / 53%);
-    border-radius: 440px;
-    opacity: 0.5;
-  }
+	&::-webkit-scrollbar-thumb {
+		background: rgb(197 219 233 / 53%);
+		border-radius: 440px;
+		opacity: 0.5;
+	}
 
-  &::-webkit-scrollbar {
-    width: 28px;
+	&::-webkit-scrollbar {
+		width: 28px;
 
-    @media screen and (max-width: 1030px) {
-      width: 15px;
-    }
-  }
+		@media screen and (max-width: 1030px) {
+			width: 15px;
+		}
+	}
 
-  &::-webkit-scrollbar-button {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 50%;
-    display: block;
-  }
+	&::-webkit-scrollbar-button {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 50%;
+		display: block;
+	}
 
-  &::-webkit-scrollbar-button:vertical:start:increment {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7e/Chevron-up.svg');
-  }
+	&::-webkit-scrollbar-button:vertical:start:increment {
+		background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7e/Chevron-up.svg');
+	}
 
-  &::-webkit-scrollbar-button:vertical:start:decrement {
-    display: none;
-  }
+	&::-webkit-scrollbar-button:vertical:start:decrement {
+		display: none;
+	}
 
-  &::-webkit-scrollbar-button:vertical:end:increment {
-    display: none;
-  }
+	&::-webkit-scrollbar-button:vertical:end:increment {
+		display: none;
+	}
 
-  &::-webkit-scrollbar-button:vertical:end:decrement {
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ee/Chevron-down.svg');
-  }
+	&::-webkit-scrollbar-button:vertical:end:decrement {
+		background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ee/Chevron-down.svg');
+	}
 
-  &-desc {
-    color: #000;
-    font-size: rem(24);
-    font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: rem(10);
+	&-desc {
+		color: #000;
+		font-size: rem(24);
+		font-weight: 500;
+		line-height: 1.2;
+		margin-bottom: rem(10);
 
-    @media screen and (max-width: 1030px) {
-      font-size: rem(17);
-    }
+		@media screen and (max-width: 1030px) {
+			font-size: rem(17);
+		}
 
-    @media screen and (max-width: 768px) {
-      font-size: rem(15);
-    }
+		@media screen and (max-width: 768px) {
+			font-size: rem(15);
+		}
 
-    &--education {
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
-    }
+		&--education {
+			@media screen and (max-width: 768px) {
+				display: none;
+			}
+		}
 
-    &--heading {
-      font-size: rem(40);
+		&--heading {
+			font-size: rem(40);
 
-      @media screen and (max-width: 420px) {
-        font-size: rem(25);
-      }
-    }
+			@media screen and (max-width: 420px) {
+				font-size: rem(25);
+			}
+		}
 
-    &--subheading {
-      font-size: rem(35);
+		&--subheading {
+			font-size: rem(35);
 
-      @media screen and (max-width: 420px) {
-        font-size: rem(22);
-      }
-    }
+			@media screen and (max-width: 420px) {
+				font-size: rem(22);
+			}
+		}
 
-    &--br {
-      display: none;
+		&--br {
+			display: none;
 
-      @media screen and (max-width: 768px) {
-        display: block;
-      }
-    }
-  }
+			@media screen and (max-width: 768px) {
+				display: block;
+			}
+		}
+	}
 }
 
 .cards__text-list {
-  display: flex;
-  flex-direction: column;
-  gap: rem(20);
-  margin-top: rem(20);
-  padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: rem(20);
+	margin-top: rem(20);
+	padding: 0;
 
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+	@media screen and (max-width: 768px) {
+		display: none;
+	}
 }
 
 .cards__text-list-item {
-  color: #000;
-  font-size: rem(24);
-  font-weight: 500;
-  line-height: 1.2;
-  list-style-type: none;
+	color: #000;
+	font-size: rem(24);
+	font-weight: 500;
+	line-height: 1.2;
+	list-style-type: none;
 
-  @media screen and (max-width: 1030px) {
-    font-size: rem(17);
-  }
+	@media screen and (max-width: 1030px) {
+		font-size: rem(17);
+	}
 
-  @media screen and (max-width: 768px) {
-    font-size: rem(13);
-  }
+	@media screen and (max-width: 768px) {
+		font-size: rem(13);
+	}
 }
 
 .whiteText {
-  color: $light !important;
+	color: $light !important;
 }

@@ -9,16 +9,16 @@ import { Licensen } from './Licensen';
 import { Map } from './Map';
 import { Promotion } from './Promotion';
 
-const HomePage = () => (
+const HomePage = ({ promotion }: any) => (
 	<>
 		<Region Tag="main">
 			<Heading hidden>Главная страница</Heading>
 			<Intro />
-			<Promotion />
-			<About />
+			{/* <Promotion data={promotion} /> */}
+			{/* <About />
 			<Licensen />
-			<Contacts />
-			<Map />
+			<Contacts /> */}
+			{/* <Map /> */}
 		</Region>
 		<Footer />
 	</>

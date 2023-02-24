@@ -6,5 +6,5 @@ export interface DataContextType {
 	about: About;
 	promotion: ImagesDatum[];
 	licensen: ImagesDatum[];
-	categories: Category[];
+	categories: any;
 }

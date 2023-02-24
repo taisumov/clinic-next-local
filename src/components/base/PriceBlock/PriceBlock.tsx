@@ -4,10 +4,10 @@ import { PriceItem } from '../PriceItem';
 
 import cx from './index.module.scss';
 
-export const PriceBlock = () => (
+export const PriceBlock = ({ priceList }) => (
 	<div className={cx('price__block')}>
-		{PRICE.map((el, i) => (
-			<PriceItem key={i} {...el} />
+		{priceList?.map((el: any) => (
+			<PriceItem key={priceList.id} {...el.attributes} />
 		))}
 	</div>
 );

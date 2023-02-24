@@ -4,10 +4,10 @@ import { DoctorsCard } from '../DoctorsCard';
 
 import cx from './index.module.scss';
 
-export const DoctorCardsList = () => (
+export const DoctorCardsList = ({ data }: any) => (
 	<div className={cx('cards')}>
-		{DOCTORS.map((el, i) => (
-			<DoctorsCard key={i} {...el} />
+		{data?.map((el: any, i: number) => (
+			<DoctorsCard key={el.id} {...el.attributes} />
 		))}
 	</div>
 );

@@ -5,11 +5,15 @@ import { Region } from '../Region';
 
 import cx from './index.module.scss';
 
-export const ServicesList = ({ arr }: { arr: Cards }) => (
+export const ServicesList = ({ arr }: any) => (
 	<Region className={cx('services')}>
 		<div className={cx('services__list')}>
-			{arr.map((elem) => (
-				<Card key={elem.href} href={elem.href} descr={elem.link} />
+			{arr?.attributes?.receptions.data.map((elem: any) => (
+				<Card
+					key={elem.id}
+					href={`/reception?service=${elem.id}`}
+					descr={elem.attributes.link}
+				/>
 			))}
 		</div>
 	</Region>

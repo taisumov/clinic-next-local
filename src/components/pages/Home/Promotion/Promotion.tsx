@@ -11,7 +11,7 @@ import { useDataContext } from '@/context/DataContext';
 
 import cx from './index.module.scss';
 
-export const Promotion = () => {
+export const Promotion = ({ data }: any) => {
 	const { promotion } = useDataContext();
 
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -66,10 +66,13 @@ export const Promotion = () => {
 			<Heading className={cx('heading')}>Новости и акции</Heading>
 			<div className={cx('navigationWrapper')}>
 				<div ref={sliderRef} className="keen-slider">
-					{promotion.map(({ id, attributes }) => (
-						<div key={id} className="keen-slider__slide number-slide1">
+					{promotion.map(({ promotion, attributes }: any) => (
+						<div
+							key={promotion.id}
+							className="keen-slider__slide number-slide1"
+						>
 							<Img
-								src={getMediaUrl(attributes.url)}
+								src={promotion.attributes.images.data.attributes.url}
 								alt={attributes.alternativeText ?? ''}
 								fill
 								sizes="100vw"

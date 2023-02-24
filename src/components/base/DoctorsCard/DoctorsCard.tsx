@@ -20,23 +20,30 @@ interface DoctorsCardProps {
 
 export const DoctorsCard = ({
 	img,
-	grade,
+	grades,
 	post,
 	skills,
 	methods,
-	education,
+	educations,
 	age,
-}: DoctorsCardProps) => (
+	name,
+}: any) => (
 	<div className={cx('cards__item')}>
 		<div className={cx('cards__picture')}>
-			<Image src={img} fill alt="doctor" className={cx('img')} />
+			<Image
+				src={img.data.attributes.url}
+				fill
+				alt="doctor"
+				className={cx('img')}
+			/>
 			<div className={cx('cards__picture-overlay')}></div>
 		</div>
 		<div className={cx('cards__text')}>
 			<div className={cx('cards__text-blur')}></div>
 			<p className={cx('cards__text-desc', 'cards__text-desc--heading')}>
-				{parse(grade.left)}
-				<span className={cx('whiteTextBold')}>{age}</span> {parse(grade.right)}
+				{grades.data[0].attributes.left}
+				<span className={cx('whiteTextBold')}>{age}</span>{' '}
+				{grades.data[0].attributes.right}
 			</p>
 			<p
 				className={cx(
@@ -45,10 +52,10 @@ export const DoctorsCard = ({
 					'whiteText'
 				)}
 			>
-				{parse(post)}
+				{post}
 			</p>
-			<p className={cx('cards__text-desc')}>{parse(skills)}</p>
-			<p className={cx('cards__text-desc')}>{parse(methods)}</p>
+			<p className={cx('cards__text-desc')}>{skills}</p>
+			<p className={cx('cards__text-desc')}>{methods}</p>
 			<p
 				className={cx(
 					'cards__text-desc',
@@ -59,9 +66,9 @@ export const DoctorsCard = ({
 				Образование:
 			</p>
 			<ul className="cards__text-list">
-				{education.map((el) => (
-					<li key={el.descr} className={cx('cards__text-list-item')}>
-						{parse(el.descr)}
+				{educations.data.map((el: any) => (
+					<li key={el.id} className={cx('cards__text-list-item')}>
+						{el.attributes.descr}
 					</li>
 				))}
 			</ul>
