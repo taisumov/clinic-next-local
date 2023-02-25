@@ -37,6 +37,7 @@ export const getStaticProps = (async () => {
 			licensen,
 			categories,
 		},
+		revalidate: 1,
 	};
 }) satisfies GetStaticProps;
 
