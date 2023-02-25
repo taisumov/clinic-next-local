@@ -1,5 +1,6 @@
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
+import { useEffect } from 'react';
 
 import { About } from './About';
 import { Contacts } from './Contacts';
@@ -9,19 +10,25 @@ import { Licensen } from './Licensen';
 import { Map } from './Map';
 import { Promotion } from './Promotion';
 
-const HomePage = ({ promotion }: any) => (
-	<>
-		<Region Tag="main">
-			<Heading hidden>Главная страница</Heading>
-			<Intro />
-			{/* <Promotion data={promotion} /> */}
-			{/* <About />
-			<Licensen />
-			<Contacts /> */}
-			{/* <Map /> */}
-		</Region>
-		<Footer />
-	</>
-);
+const HomePage = ({ promotion }: any) => {
+	useEffect(() => {
+		console.log(promotion);
+	}, []);
+
+	return (
+		<>
+			<Region Tag="main">
+				<Heading hidden>Главная страница</Heading>
+				<Intro />
+				<Promotion />
+				<About />
+				<Licensen />
+				<Contacts />
+				<Map />
+			</Region>
+			<Footer />
+		</>
+	);
+};
 
 export { HomePage };

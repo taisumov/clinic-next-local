@@ -6,25 +6,23 @@ import { useDataContext } from '@/context/DataContext';
 import cx from './index.module.scss';
 
 export const Contacts = () => {
-	const {
-		contacts: { additionalSchedule, address, phones, workingHours },
-	} = useDataContext();
+	const { contacts } = useDataContext();
 
 	return (
 		<Region id="contacts" className={cx('Root')} withContainer>
 			<Heading>Контакты</Heading>
 			<Region>
 				<Heading>Наш адрес:</Heading>
-				<p>{address}</p>
+				<p>{contacts[0]?.attributes.address}</p>
 				<Heading>Телефоны:</Heading>
-				{phones.map((el) => (
+				{contacts[0]?.attributes.phones.map((el: any) => (
 					<p key={el}>{el}</p>
 				))}
 				<Heading>Режим работы:</Heading>
-				<p>Пн — Сб: {workingHours.monSat} </p>
-				<p>Вс: {workingHours.sun} </p>
+				<p>Пн — Сб: {contacts[0]?.attributes.workingHours.monSat} </p>
+				<p>Вс: {contacts[0]?.attributes.workingHours.sun} </p>
 				<Heading hidden>Дополнительные режимы работы</Heading>
-				{additionalSchedule.map((el) => (
+				{contacts[0]?.attributes.additionalSchedule.map((el: any) => (
 					<p key={el}>{el}</p>
 				))}
 			</Region>

@@ -13,79 +13,95 @@ import cx from './index.module.scss';
 
 import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
 
+import { Autoplay, Pagination, Navigation } from 'swiper';
+import { Swiper as SwiperComponentLicense } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
 export const Licensen = () => {
 	const { licensen } = useDataContext();
 
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [loaded, setLoaded] = useState(false);
-	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
-		{
-			// initial: 0,
-			// loop: true,
-			breakpoints: {
-				'(min-width: 400px)': {
-					slides: { perView: 2, spacing: 30 },
-				},
-				'(min-width: 530px)': {
-					slides: { perView: 3, spacing: 30 },
-				},
-				'(min-width: 900px)': {
-					slides: { perView: 5, spacing: 40 },
-				},
-			},
-			slides: { perView: 1 },
-			mode: 'snap',
-			slideChanged(slider) {
-				setCurrentSlide(slider.track.details.rel);
-			},
-			created() {
-				setLoaded(true);
-			},
-		},
-		[
-			(slider) => {
-				let timeout: ReturnType<typeof setTimeout>;
-				let mouseOver = false;
-				function clearNextTimeout() {
-					clearTimeout(timeout);
-				}
+	// const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+	// 	{
+	// 		// initial: 0,
+	// 		// loop: true,
+	// 		breakpoints: {
+	// 			'(min-width: 400px)': {
+	// 				slides: { perView: 2, spacing: 30 },
+	// 			},
+	// 			'(min-width: 530px)': {
+	// 				slides: { perView: 3, spacing: 30 },
+	// 			},
+	// 			'(min-width: 900px)': {
+	// 				slides: { perView: 5, spacing: 40 },
+	// 			},
+	// 		},
+	// 		slides: { perView: 1 },
+	// 		mode: 'snap',
+	// 		slideChanged(slider) {
+	// 			setCurrentSlide(slider.track.details.rel);
+	// 		},
+	// 		created() {
+	// 			setLoaded(true);
+	// 		},
+	// 	},
+	// 	[
+	// 		(slider) => {
+	// 			let timeout: ReturnType<typeof setTimeout>;
+	// 			let mouseOver = false;
+	// 			function clearNextTimeout() {
+	// 				clearTimeout(timeout);
+	// 			}
 
-				function nextTimeout() {
-					clearTimeout(timeout);
-					if (mouseOver) return;
-					timeout = setTimeout(() => {
-						slider.next();
-					}, 3000);
-				}
+	// 			function nextTimeout() {
+	// 				clearTimeout(timeout);
+	// 				if (mouseOver) return;
+	// 				timeout = setTimeout(() => {
+	// 					slider.next();
+	// 				}, 3000);
+	// 			}
 
-				slider.on('created', () => {
-					slider.container.addEventListener('mouseover', () => {
-						mouseOver = true;
-						clearNextTimeout();
-					});
-					slider.container.addEventListener('mouseout', () => {
-						mouseOver = false;
-						nextTimeout();
-					});
-					nextTimeout();
-				});
-				slider.on('dragStarted', clearNextTimeout);
-				slider.on('animationEnded', nextTimeout);
-				slider.on('updated', nextTimeout);
-			},
-		]
-	);
+	// 			slider.on('created', () => {
+	// 				slider.container.addEventListener('mouseover', () => {
+	// 					mouseOver = true;
+	// 					clearNextTimeout();
+	// 				});
+	// 				slider.container.addEventListener('mouseout', () => {
+	// 					mouseOver = false;
+	// 					nextTimeout();
+	// 				});
+	// 				nextTimeout();
+	// 			});
+	// 			slider.on('dragStarted', clearNextTimeout);
+	// 			slider.on('animationEnded', nextTimeout);
+	// 			slider.on('updated', nextTimeout);
+	// 		},
+	// 	]
+	// );
 
 	return (
 		<Region className={cx('licensen')}>
 			<Heading className={cx('heading')}>Лицензии</Heading>
 			<div className={cx('navigationWrapper')}>
-				<div ref={sliderRef} className="keen-slider">
-					{licensen.map(({ id, attributes }) => (
-						<div key={id} className="keen-slider__slide number-slide1">
+				<SwiperComponentLicense
+					slidesPerView={5}
+					spaceBetween={30}
+					pagination={{
+						clickable: true,
+					}}
+					modules={[Pagination]}
+					className={cx('myLicense')}
+				>
+					{licensen.map((license: any) => (
+						<SwiperSlide key={license.id} className={cx('swiper-slide1')}>
 							<Img
-								src={getMediaUrl(attributes.url)}
-								alt={attributes.alternativeText ?? ''}
+								src={license.attributes.images.data[0].attributes.url}
+								alt={''}
 								fill
 								sizes="100vw"
 								style={{
@@ -93,11 +109,11 @@ export const Licensen = () => {
 								}}
 								priority
 							/>
-						</div>
+						</SwiperSlide>
 					))}
-				</div>
+				</SwiperComponentLicense>
 			</div>
-			{loaded && instanceRef.current && (
+			{/* {loaded && instanceRef.current && (
 				<div className={cx('dots')}>
 					<Arrow
 						left
@@ -124,7 +140,7 @@ export const Licensen = () => {
 						}
 					/>
 				</div>
-			)}
+			)} */}
 		</Region>
 	);
 };
