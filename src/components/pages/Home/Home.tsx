@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 
@@ -11,12 +9,7 @@ import { Licensen } from './Licensen';
 import { Map } from './Map';
 import { Promotion } from './Promotion';
 
-const HomePage = ({ promotion }: any) => {
-	useEffect(() => {
-		console.log(promotion);
-	}, []);
-
-	return (
+const HomePage = () => (
 		<>
 			<Region Tag="main">
 				<Heading hidden>Главная страница</Heading>
@@ -30,6 +23,5 @@ const HomePage = ({ promotion }: any) => {
 			<Footer />
 		</>
 	);
-};
 
 export { HomePage };

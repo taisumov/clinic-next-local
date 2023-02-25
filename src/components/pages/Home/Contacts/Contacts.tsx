@@ -2,16 +2,11 @@ import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 
 import { useDataContext } from '@/context/DataContext';
-import { useEffect } from 'react';
 
 import cx from './index.module.scss';
 
 export const Contacts = () => {
 	const { contacts } = useDataContext();
-
-	useEffect(() => {
-		console.log(contacts);
-	}, []);
 
 	return (
 		<Region id="contacts" className={cx('Root')} withContainer>

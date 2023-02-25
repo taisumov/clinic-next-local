@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useDataContext } from '@/context/DataContext';
 
 import { Circle, CircleWithIcon } from '../Circle';
-import Image from 'next/image';
-import logo from '../CircleServices/logo.png';
+
 import circleImage from './circle.png';
 
 import cx from './index.module.scss';
@@ -24,7 +23,7 @@ export const CircleServices = () => {
 			<ul
 				className={cx('circle')}
 				style={
-					selectedCategory !== ''
+					selectedCategory.length
 						? {
 								backgroundImage: `url(${circleImage.src})`,
 								backgroundPosition: 'bottom center',
@@ -63,7 +62,7 @@ export const CircleServices = () => {
 				className={cx('textContainer')}
 				style={selectedCategory === '' ? { top: '25%', left: '38%' } : {}}
 			>
-				{selectedCategory !== '' ? (
+				{selectedCategory.length ? (
 					selectedCategory
 				) : (
 					<></>
