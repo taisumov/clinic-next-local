@@ -13,8 +13,6 @@ export const getStaticProps = async () => {
 		props: {
 			priceList,
 		},
-		revalidate: 1,
-		fallback: false,
 	};
 };
 
