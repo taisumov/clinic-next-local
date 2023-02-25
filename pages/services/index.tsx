@@ -4,7 +4,7 @@ import { Services } from '@/components/pages/Services/Services';
 
 import { fetchApi } from '@/lib/api/fetchApi';
 
-import { About, type Categories } from '@/types/http/homePage.type';
+import { type Categories } from '@/types/http/homePage.type';
 
 export const getStaticProps = async () => {
 	const categories = await fetchApi<Categories>('/categories', {

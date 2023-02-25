@@ -1,30 +1,28 @@
-import { useKeenSlider } from 'keen-slider/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import { Autoplay, Navigation, Pagination } from 'swiper';
+import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react';
 
 import { Heading } from '@/components/base/Heading';
-import { Img } from '@/components/base/Img';
 import { Region } from '@/components/base/Region';
 
-import { getMediaUrl } from '@/lib/api/getUrl';
-import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
 
 import { useDataContext } from '@/context/DataContext';
 
-import { Autoplay, Pagination, Navigation } from 'swiper';
-import { Swiper as SwiperComponent, useSwiper } from 'swiper/react';
-import { SwiperSlide } from 'swiper/react';
+
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import cx from './index.module.scss';
+
+// import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
 // import Swiper from 'swiper';
 
 export const Promotion = ({ data }: any) => {
 	const { promotions } = useDataContext();
-	let sliderRes: any;
-	const [currentSlide, setCurrentSlide] = useState(0);
+	// let sliderRes: any;
+	// const [currentSlide, setCurrentSlide] = useState(0);
 	const [loaded, setLoaded] = useState(true);
 
 	const prevRef = useRef(null);
@@ -71,7 +69,9 @@ export const Promotion = ({ data }: any) => {
 										key={promotion?.id}
 										className={cx('swiper-slide')}
 									>
+										{/* eslint-disable-next-line @next/next/no-img-element */}
 										<img
+											/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
 											src={`${promotion?.attributes.image.data[0].attributes.url}`}
 											alt={''}
 											style={{
@@ -87,9 +87,9 @@ export const Promotion = ({ data }: any) => {
 							})}
 						</>
 						<div className={cx('swiper-pagination')}></div>
-						<Arrow left ref={prevRef} onClick={(e: any) => handleNext()} />
+						<Arrow left ref={prevRef} onClick={handleNext} />
 
-						<Arrow ref={nextRef} onClick={(e: any) => handlePrev()} />
+						<Arrow ref={nextRef} onClick={handlePrev} />
 					</SwiperComponent>
 				) : (
 					<></>

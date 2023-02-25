@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
+
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
-import { useEffect } from 'react';
 
 import { About } from './About';
 import { Contacts } from './Contacts';

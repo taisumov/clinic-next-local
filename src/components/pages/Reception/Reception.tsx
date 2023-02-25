@@ -1,16 +1,9 @@
-import parse from 'html-react-parser';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 import { DoctorCardsList } from '@/components/base/DoctorCardsList';
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 import { ServicesList } from '@/components/base/ServicesList';
-
-import { SERVICES_LIST_SERVICE } from '../Services/constants';
-
-import { HEADING } from './constants/constants';
 
 import cx from './index.module.scss';
 
