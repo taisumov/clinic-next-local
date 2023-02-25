@@ -2,11 +2,16 @@ import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 
 import { useDataContext } from '@/context/DataContext';
+import { useEffect } from 'react';
 
 import cx from './index.module.scss';
 
 export const Contacts = () => {
 	const { contacts } = useDataContext();
+
+	useEffect(() => {
+		console.log(contacts);
+	}, []);
 
 	return (
 		<Region id="contacts" className={cx('Root')} withContainer>
@@ -19,8 +24,8 @@ export const Contacts = () => {
 					<p key={el}>{el}</p>
 				))}
 				<Heading>Режим работы:</Heading>
-				<p>Пн — Сб: {contacts[0]?.attributes.workingHours.monSat} </p>
-				<p>Вс: {contacts[0]?.attributes.workingHours.sun} </p>
+				<p>Пн — Сб: {contacts[0]?.attributes.workingHours} </p>
+				<p>Вс: {contacts[0]?.attributes.workingHours} </p>
 				<Heading hidden>Дополнительные режимы работы</Heading>
 				{contacts[0]?.attributes.additionalSchedule.map((el: any) => (
 					<p key={el}>{el}</p>

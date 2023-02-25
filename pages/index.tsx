@@ -19,7 +19,9 @@ export const getStaticProps = (async () => {
 		[
 			fetchApi<Contacts>('/contacts'),
 			fetchApi<About>('/abouts'),
-			fetchApi('/promotions', { urlParamsObject: { populate: '*' } }),
+			fetchApi<Promotion>('/promotions', {
+				urlParamsObject: { populate: '*' },
+			}),
 			fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
 			fetchApi<Categories>('/categories', {
 				urlParamsObject: { populate: 'deep' },
@@ -48,7 +50,7 @@ const Home = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
 	<DataContext.Provider
 		value={{
-			contacts,
+			contacts: contacts.data,
 			about: about.data,
 			promotions: promotions.data,
 			licensen: licensen.data,
