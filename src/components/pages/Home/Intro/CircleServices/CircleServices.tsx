@@ -50,7 +50,7 @@ export const CircleServices = () => {
 
 					return (
 						<CircleWithIcon
-							href={item.attributes.href}
+							href={'/services'}
 							key={item.id}
 							imgSrc={item.attributes.bg.data.attributes.url}
 							text={item.attributes.text}

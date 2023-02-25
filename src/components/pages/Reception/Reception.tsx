@@ -14,6 +14,7 @@ import { HEADING } from './constants/constants';
 
 import cx from './index.module.scss';
 
+
 const TITLE = 'Услуги гинекологии';
 const BUTTON = 'Прескурант';
 const BUTTON_TEXT = 'Подробнее...';
