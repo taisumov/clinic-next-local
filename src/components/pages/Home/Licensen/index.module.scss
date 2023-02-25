@@ -18,6 +18,10 @@
 		align-items: center;
 		height: 350px;
 
+		@media(max-width: 550px) {
+			height: 500px;
+		}
+
 		& img {
 			height: 100% !important;
 		}
@@ -25,6 +29,14 @@
 }
 
 .swiperNavbar {
+	margin-top: 15px;
+}
+
+.licensen > h2 {
+	@include heading2(700);
+	margin-bottom: 1.5rem;
+	margin-top: 2rem;
+	padding-left: var(--space-80);
 }
 
 

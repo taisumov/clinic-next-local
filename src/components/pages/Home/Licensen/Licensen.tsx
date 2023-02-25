@@ -1,7 +1,7 @@
 import { useKeenSlider } from 'keen-slider/react';
-import {useCallback, useRef, useState} from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
-import {Swiper as SwiperComponentLicense, SwiperSlide, useSwiper} from 'swiper/react';
+import { Swiper as SwiperComponentLicense, SwiperSlide } from 'swiper/react';
 
 import { Heading } from '@/components/base/Heading';
 import { Img } from '@/components/base/Img';
@@ -27,15 +27,11 @@ export const Licensen = () => {
 
 	const handlePrev = useCallback(() => {
 		if (!sliderRef.current) return;
-		// setCurrentSlide(prev => prev - Number(prev === licensen.length - 1))
 		sliderRef.current.swiper.slidePrev();
 	}, []);
 
-
-
 	const handleNext = useCallback(() => {
 		if (!sliderRef.current) return;
-		// setCurrentSlide(prev => prev + Number(prev === 0))
 		sliderRef.current.swiper.slideNext();
 	}, []);
 
@@ -44,64 +40,6 @@ export const Licensen = () => {
 
 	const leftArr = useRef(null);
 	const rightArr = useRef(null);
-
-	// const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
-	// 	{
-	// 		// initial: 0,
-	// 		// loop: true,
-	// 		breakpoints: {
-	// 			'(min-width: 400px)': {
-	// 				slides: { perView: 2, spacing: 30 },
-	// 			},
-	// 			'(min-width: 530px)': {
-	// 				slides: { perView: 3, spacing: 30 },
-	// 			},
-	// 			'(min-width: 900px)': {
-	// 				slides: { perView: 5, spacing: 40 },
-	// 			},
-	// 		},
-	// 		slides: { perView: 1 },
-	// 		mode: 'snap',
-	// 		slideChanged(slider) {
-	// 			setCurrentSlide(slider.track.details.rel);
-	// 		},
-	// 		created() {
-	// 			setLoaded(true);
-	// 		},
-	// 	},
-	// 	[
-	// 		(slider) => {
-	// 			let timeout: ReturnType<typeof setTimeout>;
-	// 			let mouseOver = false;
-	// 			function clearNextTimeout() {
-	// 				clearTimeout(timeout);
-	// 			}
-	//
-	// 			function nextTimeout() {
-	// 				clearTimeout(timeout);
-	// 				if (mouseOver) return;
-	// 				timeout = setTimeout(() => {
-	// 					slider.next();
-	// 				}, 3000);
-	// 			}
-	//
-	// 			slider.on('created', () => {
-	// 				slider.container.addEventListener('mouseover', () => {
-	// 					mouseOver = true;
-	// 					clearNextTimeout();
-	// 				});
-	// 				slider.container.addEventListener('mouseout', () => {
-	// 					mouseOver = false;
-	// 					nextTimeout();
-	// 				});
-	// 				nextTimeout();
-	// 			});
-	// 			slider.on('dragStarted', clearNextTimeout);
-	// 			slider.on('animationEnded', nextTimeout);
-	// 			slider.on('updated', nextTimeout);
-	// 		},
-	// 	]
-	// );
 
 	return (
 		<Region className={cx('licensen')}>
@@ -123,11 +61,12 @@ export const Licensen = () => {
 							slidesPerView: 3, spaceBetween: 30,
 						},
 						900: {
-							slidesPerView: 5, spaceBetween: 40,
+							slidesPerView: 4, spaceBetween: 40,
+						},
+						1300: {
+							slidesPerView: 5, spaceBetween: 60,
 						},
 					}}
-					// slidesPerView={5}
-					// spaceBetween={60}
 					pagination={{ clickable: true }}
 					className={cx('myLicense')}
 				>
@@ -148,24 +87,10 @@ export const Licensen = () => {
 				</SwiperComponentLicense>
 			</div>
 			<div className={cx('swiperNavbar')}>
-
-
 				<div className={cx('dots')}>
 					<div ref={leftArr}>
 						<Arrow left onClick={handlePrev}/>
 					</div>
-
-					{/* {[...Array(licensen.length).keys()].map((idx) => ( */}
-					{/*	<button */}
-					{/*		key={idx} */}
-					{/*		onClick={() => { */}
-					{/*			console.log(sliderRef.current.swiper) */}
-					{/*		}} */}
-					{/*		className={cx('dot', { */}
-					{/*			active: currentSlide === idx, */}
-					{/*		})} */}
-					{/*	></button> */}
-					{/* ))} */}
 
 					<div ref={rightArr}>
 						<Arrow onClick={handleNext}/>
