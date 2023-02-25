@@ -21,7 +21,9 @@ const BUTTON_TEXT = 'Подробнее...';
 const SERVICES_LIST = 'Ведущие специалисты';
 
 export const Reception = ({ receptions, path }: any) => {
-	const data = receptions.data.find((recept: any) => recept.id === Number(path.service));
+	const data = receptions.data.find(
+		(recept: any) => recept.id === Number(path.service)
+	);
 	console.log(data, '213');
 
 	return (

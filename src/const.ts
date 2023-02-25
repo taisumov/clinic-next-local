@@ -9201,9 +9201,118 @@ export const promotions = {
 		{
 			id: 1,
 			attributes: {
-				createdAt: '2023-02-23T18:42:33.675Z',
-				updatedAt: '2023-02-23T18:42:42.261Z',
-				publishedAt: '2023-02-23T18:42:42.258Z',
+				createdAt: '2023-02-24T17:39:18.884Z',
+				updatedAt: '2023-02-24T17:39:19.478Z',
+				publishedAt: '2023-02-24T17:39:19.474Z',
+				image: {
+					data: [
+						{
+							id: 1,
+							attributes: {
+								name: '333.jpg',
+								alternativeText: null,
+								caption: null,
+								width: 272,
+								height: 185,
+								formats: {
+									thumbnail: {
+										name: 'thumbnail_333.jpg',
+										hash: 'thumbnail_333_90df626dd0',
+										ext: '.jpg',
+										mime: 'image/jpeg',
+										path: null,
+										width: 229,
+										height: 156,
+										size: 7.51,
+										url: 'https://res.cloudinary.com/dsrqil9aq/image/upload/v1677177714/thumbnail_333_90df626dd0.jpg',
+										provider_metadata: {
+											public_id: 'thumbnail_333_90df626dd0',
+											resource_type: 'image',
+										},
+									},
+								},
+								hash: '333_90df626dd0',
+								ext: '.jpg',
+								mime: 'image/jpeg',
+								size: 6.17,
+								url: 'https://res.cloudinary.com/dsrqil9aq/image/upload/v1677177714/333_90df626dd0.jpg',
+								previewUrl: null,
+								provider: 'cloudinary',
+								provider_metadata: {
+									public_id: '333_90df626dd0',
+									resource_type: 'image',
+								},
+								createdAt: '2023-02-23T18:41:55.836Z',
+								updatedAt: '2023-02-23T18:57:06.073Z',
+							},
+						},
+					],
+				},
+			},
+		},
+		{
+			id: 2,
+			attributes: {
+				createdAt: '2023-02-24T17:55:29.469Z',
+				updatedAt: '2023-02-24T17:55:30.350Z',
+				publishedAt: '2023-02-24T17:55:30.348Z',
+				image: {
+					data: [
+						{
+							id: 1,
+							attributes: {
+								name: '333.jpg',
+								alternativeText: null,
+								caption: null,
+								width: 272,
+								height: 185,
+								formats: {
+									thumbnail: {
+										name: 'thumbnail_333.jpg',
+										hash: 'thumbnail_333_90df626dd0',
+										ext: '.jpg',
+										mime: 'image/jpeg',
+										path: null,
+										width: 229,
+										height: 156,
+										size: 7.51,
+										url: 'https://res.cloudinary.com/dsrqil9aq/image/upload/v1677177714/thumbnail_333_90df626dd0.jpg',
+										provider_metadata: {
+											public_id: 'thumbnail_333_90df626dd0',
+											resource_type: 'image',
+										},
+									},
+								},
+								hash: '333_90df626dd0',
+								ext: '.jpg',
+								mime: 'image/jpeg',
+								size: 6.17,
+								url: 'https://res.cloudinary.com/dsrqil9aq/image/upload/v1677177714/333_90df626dd0.jpg',
+								previewUrl: null,
+								provider: 'cloudinary',
+								provider_metadata: {
+									public_id: '333_90df626dd0',
+									resource_type: 'image',
+								},
+								createdAt: '2023-02-23T18:41:55.836Z',
+								updatedAt: '2023-02-23T18:57:06.073Z',
+							},
+						},
+					],
+				},
+			},
+		},
+	],
+};
+
+export const licensen = {
+	data: [
+		{
+			id: 1,
+			attributes: {
+				createdAt: '2023-02-23T18:42:02.182Z',
+				updatedAt: '2023-02-23T18:42:05.217Z',
+				publishedAt: '2023-02-23T18:42:05.213Z',
 				images: {
 					data: [
 						{
@@ -9248,6 +9357,24 @@ export const promotions = {
 						},
 					],
 				},
+			},
+		},
+	],
+	meta: { pagination: { page: 1, pageSize: 25, pageCount: 1, total: 1 } },
+};
+
+export const contacts = {
+	data: [
+		{
+			id: 1,
+			attributes: {
+				phones: [1213, 123],
+				address: '12312',
+				workingHours: 213123,
+				additionalSchedule: ['2314', '456'],
+				createdAt: '2023-02-23T18:44:49.789Z',
+				updatedAt: '2023-02-23T19:01:16.033Z',
+				publishedAt: '2023-02-23T18:44:50.839Z',
 			},
 		},
 	],

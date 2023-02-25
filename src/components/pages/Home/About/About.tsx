@@ -9,11 +9,10 @@ import cx from './index.module.scss';
 
 export const About = () => {
 	const { about } = useDataContext();
-
 	return (
 		<Region className={cx('Root')} withContainer>
 			<Heading>О нас</Heading>
-			<ReactMarkdown>{about.description}</ReactMarkdown>
+			<ReactMarkdown>{about[0].attributes.description}</ReactMarkdown>
 		</Region>
 	);
 };

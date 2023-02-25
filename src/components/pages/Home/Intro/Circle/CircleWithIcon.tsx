@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import cx from './index.module.scss';
-import { useDataContext } from '@/context/DataContext';
 
 export const CircleWithIcon = ({ imgSrc, text, rightSide, href }: any) => (
 	<li className={cx('Root')}>

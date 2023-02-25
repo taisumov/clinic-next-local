@@ -1,6 +1,8 @@
-import { Service } from '@/components/pages/Service';
-import { fetchApi } from '@/lib/api/fetchApi';
 import { useRouter } from 'next/router';
+
+import { Service } from '@/components/pages/Service';
+
+import { fetchApi } from '@/lib/api/fetchApi';
 
 export const getStaticProps = async () => {
 	const priceList = await fetchApi('/receptions', {

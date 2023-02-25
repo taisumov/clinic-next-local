@@ -1,13 +1,15 @@
-import { Reception } from '@/components/pages/Reception';
-import { fetchApi } from '@/lib/api/fetchApi';
-import { GetStaticProps } from 'next';
+import { type GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
+
+import { Reception } from '@/components/pages/Reception';
+
+import { fetchApi } from '@/lib/api/fetchApi';
 
 export const getStaticProps = (async () => {
 	const [receptions] = await Promise.all([
 		fetchApi('/receptions', {
 			urlParamsObject: { populate: 'deep' },
-		}), //найти reception по id
+		}), // найти reception по id
 	]);
 
 	return {

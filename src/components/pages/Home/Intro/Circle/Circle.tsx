@@ -9,8 +9,15 @@ export const Circle = ({
 	onClick,
 	subItems,
 	href,
+	setSelectedCategory,
 }: any) => (
-	<li className={cx('root')} onClick={() => onClick(subItems)}>
+	<li
+		className={cx('root')}
+		onClick={() => {
+			onClick(subItems);
+			setSelectedCategory(text);
+		}}
+	>
 		<Image className={cx('image')} alt="picture" src={imgSrc} fill />
 		<p className={cx('text', rightSide ? 'right' : 'left')}>{text}</p>
 	</li>

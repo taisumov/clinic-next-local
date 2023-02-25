@@ -1,90 +1,101 @@
 import { useKeenSlider } from 'keen-slider/react';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Heading } from '@/components/base/Heading';
 import { Img } from '@/components/base/Img';
 import { Region } from '@/components/base/Region';
 
 import { getMediaUrl } from '@/lib/api/getUrl';
+import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
 
 import { useDataContext } from '@/context/DataContext';
 
+import { Autoplay, Pagination, Navigation } from 'swiper';
+import { Swiper as SwiperComponent, useSwiper } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
 import cx from './index.module.scss';
+// import Swiper from 'swiper';
 
 export const Promotion = ({ data }: any) => {
-	const { promotion } = useDataContext();
-
+	const { promotions } = useDataContext();
+	let sliderRes: any;
 	const [currentSlide, setCurrentSlide] = useState(0);
-	const [loaded, setLoaded] = useState(false);
-	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
-		{
-			initial: 0,
-			loop: true,
-			slideChanged(slider) {
-				setCurrentSlide(slider.track.details.rel);
-			},
-			created() {
-				setLoaded(true);
-			},
-		},
-		[
-			(slider) => {
-				let timeout: ReturnType<typeof setTimeout>;
-				let mouseOver = false;
-				function clearNextTimeout() {
-					clearTimeout(timeout);
-				}
+	const [loaded, setLoaded] = useState(true);
 
-				function nextTimeout() {
-					clearTimeout(timeout);
-					if (mouseOver) return;
-					timeout = setTimeout(() => {
-						slider.next();
-					}, 3000);
-				}
+	const prevRef = useRef(null);
+	const nextRef = useRef(null);
+	const swiper = useRef<any>(null);
 
-				slider.on('created', () => {
-					slider.container.addEventListener('mouseover', () => {
-						mouseOver = true;
-						clearNextTimeout();
-					});
-					slider.container.addEventListener('mouseout', () => {
-						mouseOver = false;
-						nextTimeout();
-					});
-					nextTimeout();
-				});
-				slider.on('dragStarted', clearNextTimeout);
-				slider.on('animationEnded', nextTimeout);
-				slider.on('updated', nextTimeout);
-			},
-		]
-	);
+	const handleNext = useCallback(() => {
+		if (!swiper.current) return;
+		swiper.current.swiper.slideNext();
+	}, []);
+
+	const handlePrev = useCallback(() => {
+		if (!swiper.current) return;
+		swiper.current.swiper.slidePrev();
+	}, []);
 
 	return (
 		<Region className={cx('promotion')} id="promo">
 			<Heading className={cx('heading')}>Новости и акции</Heading>
 			<div className={cx('navigationWrapper')}>
-				<div ref={sliderRef} className="keen-slider">
-					{promotion.map(({ promotion, attributes }: any) => (
-						<div
-							key={promotion.id}
-							className="keen-slider__slide number-slide1"
-						>
-							<Img
-								src={promotion.attributes.images.data.attributes.url}
-								alt={attributes.alternativeText ?? ''}
-								fill
-								sizes="100vw"
-								style={{
-									objectFit: 'cover',
-								}}
-								priority
-							/>
-						</div>
-					))}
-				</div>
-				{loaded && instanceRef.current && (
+				{loaded ? (
+					<SwiperComponent
+						ref={swiper}
+						loop
+						spaceBetween={30}
+						centeredSlides={true}
+						autoplay={{
+							delay: 2500,
+							disableOnInteraction: false,
+						}}
+						pagination={{
+							el: '.swiper-pagination',
+							clickable: true,
+						}}
+						navigation={{ prevEl: prevRef?.current, nextEl: nextRef?.current }}
+						modules={[Autoplay, Pagination, Navigation]}
+						className={cx('mySwiper')}
+					>
+						<>
+							{promotions.map((promotion: any) => {
+								console.log(data, '23');
+								return (
+									<SwiperSlide
+										key={promotion?.id}
+										className={cx('swiper-slide')}
+									>
+										<img
+											src={`${promotion?.attributes.image.data[0].attributes.url}`}
+											alt={''}
+											style={{
+												objectFit: 'cover',
+												width: '100%',
+												height: '100%',
+											}}
+											loading="lazy"
+										/>
+										<div className="swiper-lazy-preloader"></div>
+									</SwiperSlide>
+								);
+							})}
+						</>
+						<div className={cx('swiper-pagination')}></div>
+						<Arrow left ref={prevRef} onClick={(e: any) => handleNext()} />
+
+						<Arrow ref={nextRef} onClick={(e: any) => handlePrev()} />
+					</SwiperComponent>
+				) : (
+					<></>
+				)}
+			</div>
+			{/* {loaded && instanceRef.current && (
 					<>
 						<Arrow
 							left
@@ -103,7 +114,7 @@ export const Promotion = ({ data }: any) => {
 				{loaded && instanceRef.current && (
 					<div className={cx('dots')}>
 						{[
-							...Array(instanceRef.current.track.details.slides.length).keys(),
+							...Array(instanceRef.current.track.details?.slides.length).keys(),
 						].map((idx) => (
 							<button
 								key={idx}
@@ -116,15 +127,15 @@ export const Promotion = ({ data }: any) => {
 							></button>
 						))}
 					</div>
-				)}
-			</div>
+				)} */}
 		</Region>
 	);
 };
 
-function Arrow(props: { left?: boolean; onClick: (e: any) => void }) {
+function Arrow(props: { left?: boolean; onClick: (e: any) => void; ref: any }) {
 	return (
 		<span
+			ref={props.ref}
 			className={cx('arrowWrap', {
 				arrowLeft: props.left,
 				arrowRight: !props.left,

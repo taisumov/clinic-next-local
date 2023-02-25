@@ -15,21 +15,25 @@ import {
 } from '@/types/http/homePage.type';
 
 export const getStaticProps = (async () => {
-	const [contacts, about, promotion, licensen, categories] = await Promise.all([
-		fetchApi<Contacts>('/contacts'),
-		fetchApi<About>('/abouts'),
-		fetchApi<Promotion>('/promotions', { urlParamsObject: { populate: '*' } }),
-		fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
-		fetchApi<Categories>('/categories', {
-			urlParamsObject: { populate: 'deep' },
-		}),
-	]);
+	const [contacts, about, promotions, licensen, categories] = await Promise.all(
+		[
+			fetchApi<Contacts>('/contacts'),
+			fetchApi<About>('/abouts'),
+			fetchApi<Promotion>('/promotions', {
+				urlParamsObject: { populate: '*' },
+			}),
+			fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
+			fetchApi<Categories>('/categories', {
+				urlParamsObject: { populate: 'deep' },
+			}),
+		]
+	);
 
 	return {
 		props: {
 			contacts,
 			about,
-			promotion,
+			promotions,
 			licensen,
 			categories,
 		},
@@ -40,15 +44,15 @@ export const getStaticProps = (async () => {
 const Home = ({
 	contacts,
 	about,
-	promotion,
+	promotions,
 	licensen,
 	categories,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
 	<DataContext.Provider
 		value={{
-			contacts,
-			about,
-			promotion: promotion.data,
+			contacts: contacts.data,
+			about: about.data,
+			promotions: promotions.data,
 			licensen: licensen.data,
 			categories,
 		}}

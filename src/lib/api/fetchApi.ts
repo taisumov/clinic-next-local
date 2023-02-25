@@ -14,7 +14,7 @@ interface Api {
 export async function fetchApi<TResponse>(
 	path: string,
 	init: ApiOptionsObj = {}
-): Promise<TResponse | any> {
+): Promise<any> {
 	const { urlParamsObject, options, fullData } = init;
 
 	const requestUrl = getFullUrl(path, urlParamsObject ?? {});

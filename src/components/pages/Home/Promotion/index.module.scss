@@ -4,6 +4,44 @@
 	position: relative;
 }
 
+.swiperPaginationBullet {
+	color: red;
+	width: 10px;
+	height: 10px;
+	background: red !important;
+}
+
+.mySwiper {
+	@include respondBelow(1800px) {
+		height: 40vw;
+	}
+	@include respondBelow(900px) {
+		height: 60vw;
+	}
+}
+.swiper {
+	width: 100%;
+	height: 100%;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+
+	/* Center slide text vertically */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
 .promotion {
 	background-image: url('/bg/newsAndPromoBg.png');
 	background-position: -25px -70px;
@@ -20,7 +58,7 @@
 .promotion :is([class^='number-slide'], [class*='number-slide']) {
 	@include text1($light, 500);
 	align-items: center;
-	background: hsl(0, 0%, 50%);
+	// background: hsl(0, 0%, 50%);
 	display: flex;
 	height: clamp(300px, 60vh, 800px);
 	justify-content: center;
@@ -72,22 +110,28 @@ $lightGray: color.adjust($gray, $alpha: -0.2);
 $arrowSpace: fluid(5, 20);
 
 .arrowWrap {
-	background-color: $lightGray;
+	background: rgba(0, 175, 250, 0.34);
 	border-radius: 50%;
-	box-shadow: 0 0 7px 5px $lightGray;
+	box-shadow: 0 0 7px 5px rgba(0, 175, 250, 0.34);
 	cursor: pointer;
 	height: $arrowSizBig;
 	padding: rem(10);
 	position: absolute;
-	top: 50%;
+	top: 90%;
 	transform: translateY(-50%);
 	width: $arrowSizBig;
+	z-index: 2;
+}
+
+.navContainer {
+	display: flex;
+	flex-direction: row;
 }
 
 .arrow {
 	fill: $light;
 	height: $arrowSize;
-
+	z-index: 100;
 	width: $arrowSize;
 }
 
