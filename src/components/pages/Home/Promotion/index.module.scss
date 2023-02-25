@@ -12,7 +12,12 @@
 }
 
 .mySwiper {
-	height: 400px;
+	@include respondBelow(1800px) {
+		height: 40vw;
+	}
+	@include respondBelow(900px) {
+		height: 60vw;
+	}
 }
 .swiper {
 	width: 100%;
@@ -105,22 +110,28 @@ $lightGray: color.adjust($gray, $alpha: -0.2);
 $arrowSpace: fluid(5, 20);
 
 .arrowWrap {
-	background-color: $lightGray;
+	background: rgba(0, 175, 250, 0.34);
 	border-radius: 50%;
-	box-shadow: 0 0 7px 5px $lightGray;
+	box-shadow: 0 0 7px 5px rgba(0, 175, 250, 0.34);
 	cursor: pointer;
 	height: $arrowSizBig;
 	padding: rem(10);
 	position: absolute;
-	top: 50%;
+	top: 90%;
 	transform: translateY(-50%);
 	width: $arrowSizBig;
+	z-index: 2;
+}
+
+.navContainer {
+	display: flex;
+	flex-direction: row;
 }
 
 .arrow {
 	fill: $light;
 	height: $arrowSize;
-
+	z-index: 100;
 	width: $arrowSize;
 }
 
