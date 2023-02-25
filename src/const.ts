@@ -9303,7 +9303,6 @@ export const promotions = {
 			},
 		},
 	],
-	meta: { pagination: { page: 1, pageSize: 25, pageCount: 1, total: 2 } },
 };
 
 export const licensen = {
