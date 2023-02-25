@@ -17,6 +17,7 @@ export const getStaticProps = (async () => {
 			receptions,
 		},
 		revalidate: 1,
+		fallback: false,
 	};
 }) satisfies GetStaticProps;
 

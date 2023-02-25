@@ -38,6 +38,7 @@ export const getStaticProps = (async () => {
 			categories,
 		},
 		revalidate: 1,
+		fallback: false,
 	};
 }) satisfies GetStaticProps;
 

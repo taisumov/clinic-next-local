@@ -14,6 +14,7 @@ export const getStaticProps = async () => {
 			priceList,
 		},
 		revalidate: 1,
+		fallback: false,
 	};
 };
 
