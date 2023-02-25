@@ -1,5 +1,7 @@
 import { useKeenSlider } from 'keen-slider/react';
-import { useState } from 'react';
+import {useCallback, useRef, useState} from 'react';
+import { Autoplay, Navigation, Pagination } from 'swiper';
+import {Swiper as SwiperComponentLicense, SwiperSlide, useSwiper} from 'swiper/react';
 
 import { Heading } from '@/components/base/Heading';
 import { Img } from '@/components/base/Img';
@@ -13,19 +15,36 @@ import cx from './index.module.scss';
 
 import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
 
-import { Autoplay, Pagination, Navigation } from 'swiper';
-import { Swiper as SwiperComponentLicense } from 'swiper/react';
-import { SwiperSlide } from 'swiper/react';
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
 
 export const Licensen = () => {
 	const { licensen } = useDataContext();
 
+	const sliderRef = useRef<any>(null);
+
+	const handlePrev = useCallback(() => {
+		if (!sliderRef.current) return;
+		// setCurrentSlide(prev => prev - Number(prev === licensen.length - 1))
+		sliderRef.current.swiper.slidePrev();
+	}, []);
+
+
+
+	const handleNext = useCallback(() => {
+		if (!sliderRef.current) return;
+		// setCurrentSlide(prev => prev + Number(prev === 0))
+		sliderRef.current.swiper.slideNext();
+	}, []);
+
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [loaded, setLoaded] = useState(false);
+
+	const leftArr = useRef(null);
+	const rightArr = useRef(null);
+
 	// const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
 	// 	{
 	// 		// initial: 0,
@@ -57,7 +76,7 @@ export const Licensen = () => {
 	// 			function clearNextTimeout() {
 	// 				clearTimeout(timeout);
 	// 			}
-
+	//
 	// 			function nextTimeout() {
 	// 				clearTimeout(timeout);
 	// 				if (mouseOver) return;
@@ -65,7 +84,7 @@ export const Licensen = () => {
 	// 					slider.next();
 	// 				}, 3000);
 	// 			}
-
+	//
 	// 			slider.on('created', () => {
 	// 				slider.container.addEventListener('mouseover', () => {
 	// 					mouseOver = true;
@@ -89,21 +108,36 @@ export const Licensen = () => {
 			<Heading className={cx('heading')}>Лицензии</Heading>
 			<div className={cx('navigationWrapper')}>
 				<SwiperComponentLicense
-					slidesPerView={5}
-					spaceBetween={30}
-					pagination={{
-						clickable: true,
+					ref={sliderRef}
+					modules={[Pagination, Navigation]}
+
+					navigation={{
+						prevEl: leftArr.current,
+						nextEl: rightArr.current,
 					}}
-					modules={[Pagination]}
+					breakpoints = {{
+						550: {
+							slidesPerView: 2, spaceBetween: 30,
+						},
+						700: {
+							slidesPerView: 3, spaceBetween: 30,
+						},
+						900: {
+							slidesPerView: 5, spaceBetween: 40,
+						},
+					}}
+					// slidesPerView={5}
+					// spaceBetween={60}
+					pagination={{ clickable: true }}
 					className={cx('myLicense')}
 				>
 					{licensen.map((license: any) => (
-						<SwiperSlide key={license.id} className={cx('swiper-slide1')}>
+						<SwiperSlide key={license.id} className={cx('swiperSlide')}>
 							<Img
 								src={license.attributes.images.data[0].attributes.url}
 								alt={''}
 								fill
-								sizes="100vw"
+								sizes="100vh"
 								style={{
 									objectFit: 'cover',
 								}}
@@ -113,34 +147,59 @@ export const Licensen = () => {
 					))}
 				</SwiperComponentLicense>
 			</div>
-			{/* {loaded && instanceRef.current && (
+			<div className={cx('swiperNavbar')}>
+
+
 				<div className={cx('dots')}>
-					<Arrow
-						left
-						onClick={(e: any) =>
-							e.stopPropagation() || instanceRef.current?.prev()
-						}
-					/>
-					{[
-						...Array(instanceRef.current.track.details.slides.length).keys(),
-					].map((idx) => (
-						<button
-							key={idx}
-							onClick={() => {
-								instanceRef.current?.moveToIdx(idx);
-							}}
-							className={cx('dot', {
-								active: currentSlide === idx,
-							})}
-						></button>
-					))}
-					<Arrow
-						onClick={(e: any) =>
-							e.stopPropagation() || instanceRef.current?.next()
-						}
-					/>
+					<div ref={leftArr}>
+						<Arrow left onClick={handlePrev}/>
+					</div>
+
+					{/* {[...Array(licensen.length).keys()].map((idx) => ( */}
+					{/*	<button */}
+					{/*		key={idx} */}
+					{/*		onClick={() => { */}
+					{/*			console.log(sliderRef.current.swiper) */}
+					{/*		}} */}
+					{/*		className={cx('dot', { */}
+					{/*			active: currentSlide === idx, */}
+					{/*		})} */}
+					{/*	></button> */}
+					{/* ))} */}
+
+					<div ref={rightArr}>
+						<Arrow onClick={handleNext}/>
+					</div>
 				</div>
-			)} */}
+			</div>
+			 {/* {loaded && instanceRef.current && ( */}
+				{/* <div className={cx('dots')}> */}
+				{/*	<Arrow */}
+				{/*		left */}
+				{/*		onClick={(e: any) => */}
+				{/*			e.stopPropagation() || instanceRef.current?.prev() */}
+				{/*		} */}
+				{/*	/> */}
+				{/*	{[ */}
+				{/*		...Array(instanceRef.current.track.details.slides.length).keys(), */}
+				{/*	].map((idx) => ( */}
+				{/*		<button */}
+				{/*			key={idx} */}
+				{/*			onClick={() => { */}
+				{/*				instanceRef.current?.moveToIdx(idx); */}
+				{/*			}} */}
+				{/*			className={cx('dot', { */}
+				{/*				active: currentSlide === idx, */}
+				{/*			})} */}
+				{/*		></button> */}
+				{/*	))} */}
+				{/*	<Arrow */}
+				{/*		onClick={(e: any) => */}
+				{/*			e.stopPropagation() || instanceRef.current?.next() */}
+				{/*		} */}
+				{/*	/> */}
+				{/* </div> */}
+			 {/* )} */}
 		</Region>
 	);
 };
