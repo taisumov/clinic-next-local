@@ -11,12 +11,54 @@
 	position: absolute;
 }
 
+.textContainer {
+	position: absolute;
+	top: calc(50% - 2vw);
+	left: calc(50% - 14rem);
+	width: 28rem;
+	text-align: center;
+	font-family: 'IBM Plex Sans';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 6vw;
+	line-height: 130%;
+	text-transform: capitalize;
+	color: #ffffff;
+	@include respondBelow(2200px) {
+		top: calc(50% - 2vw);
+		font-size: 2.5vw;
+	}
+	@include respondBelow(1700px) {
+		top: calc(50% - 2vw);
+		font-size: 3.5vw;
+	}
+	@include respondBelow(1400px) {
+		top: calc(50% - 2vw);
+		font-size: 3.5vw;
+		width: 25rem;
+		left: calc(50% - 12.5rem);
+	}
+	@include respondBelow(890px) {
+		width: 16rem;
+		left: calc(50% - 8rem);
+	}
+	@include respondBelow(550px) {
+		width: 13.5rem;
+		left: calc(50% - 6.75rem);
+		font-size: 5vw;
+	}
+}
+
 .circle {
-	@include distribute-on-circle(6, 40rem, 5rem);
-	background-image: url('/7.png');
+	@include distribute-on-circle(6, 40rem, 6.5rem);
+	// background-image: url(./circle.png), url(./logo.png); //url('/7.png');
 	background-position: bottom center;
 	background-repeat: no-repeat;
-	background-size: contain;
+
+	background: url('./logo.png') 40% center / contain no-repeat,
+		url('./circle.png') bottom center no-repeat;
+	background-size: 55%, contain;
+	background-position: 60% 55%, bottom center;
 	img {
 		object-fit: cover;
 	}

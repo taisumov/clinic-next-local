@@ -2,7 +2,7 @@
 
 @mixin distribute-on-circle($nb-items, $circle-size, $item-size) {
 	$half-item: math.div($item-size, 2);
-	$half-parent: math.div($circle-size, 2);
+	$half-parent: math.div($circle-size, 1.9);
 
 	$angle: math.div(-180, $nb-items);
 	$rot: 165;

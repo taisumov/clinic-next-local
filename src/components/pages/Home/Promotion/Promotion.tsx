@@ -1,16 +1,17 @@
 import { useKeenSlider } from 'keen-slider/react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Heading } from '@/components/base/Heading';
 import { Img } from '@/components/base/Img';
 import { Region } from '@/components/base/Region';
 
 import { getMediaUrl } from '@/lib/api/getUrl';
+import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
 
 import { useDataContext } from '@/context/DataContext';
 
 import { Autoplay, Pagination, Navigation } from 'swiper';
-import { Swiper as SwiperComponent } from 'swiper/react';
+import { Swiper as SwiperComponent, useSwiper } from 'swiper/react';
 import { SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -26,51 +27,19 @@ export const Promotion = ({ data }: any) => {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [loaded, setLoaded] = useState(true);
 
-	// const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
-	// 	{
-	// 		initial: 0,
-	// 		loop: true,
-	// 		slideChanged(slider) {
-	// 			setCurrentSlide(slider.track.details.rel);
-	// 		},
-	// 		created(s) {
-	// 			sliderRes = s;
-	// 			setLoaded(true);
-	// 		},
-	// 	},
-	// 	[
-	// 		(slider) => {
-	// 			let timeout: ReturnType<typeof setTimeout>;
-	// 			let mouseOver = false;
-	// 			function clearNextTimeout() {
-	// 				clearTimeout(timeout);
-	// 			}
+	const prevRef = useRef(null);
+	const nextRef = useRef(null);
+	const swiper = useRef<any>(null);
 
-	// 			function nextTimeout() {
-	// 				clearTimeout(timeout);
-	// 				if (mouseOver) return;
-	// 				timeout = setTimeout(() => {
-	// 					slider.next();
-	// 				}, 3000);
-	// 			}
+	const handleNext = useCallback(() => {
+		if (!swiper.current) return;
+		swiper.current.swiper.slideNext();
+	}, []);
 
-	// 			slider.on('created', () => {
-	// 				slider.container.addEventListener('mouseover', () => {
-	// 					mouseOver = true;
-	// 					clearNextTimeout();
-	// 				});
-	// 				slider.container.addEventListener('mouseout', () => {
-	// 					mouseOver = false;
-	// 					nextTimeout();
-	// 				});
-	// 				nextTimeout();
-	// 			});
-	// 			slider.on('dragStarted', clearNextTimeout);
-	// 			slider.on('animationEnded', nextTimeout);
-	// 			slider.on('updated', nextTimeout);
-	// 		},
-	// 	]
-	// );
+	const handlePrev = useCallback(() => {
+		if (!swiper.current) return;
+		swiper.current.swiper.slidePrev();
+	}, []);
 
 	return (
 		<Region className={cx('promotion')} id="promo">
@@ -78,6 +47,8 @@ export const Promotion = ({ data }: any) => {
 			<div className={cx('navigationWrapper')}>
 				{loaded ? (
 					<SwiperComponent
+						ref={swiper}
+						loop
 						spaceBetween={30}
 						centeredSlides={true}
 						autoplay={{
@@ -88,7 +59,7 @@ export const Promotion = ({ data }: any) => {
 							el: '.swiper-pagination',
 							clickable: true,
 						}}
-						navigation={true}
+						navigation={{ prevEl: prevRef?.current, nextEl: nextRef?.current }}
 						modules={[Autoplay, Pagination, Navigation]}
 						className={cx('mySwiper')}
 					>
@@ -116,6 +87,9 @@ export const Promotion = ({ data }: any) => {
 							})}
 						</>
 						<div className={cx('swiper-pagination')}></div>
+						<Arrow left ref={prevRef} onClick={(e: any) => handleNext()} />
+
+						<Arrow ref={nextRef} onClick={(e: any) => handlePrev()} />
 					</SwiperComponent>
 				) : (
 					<></>
@@ -158,27 +132,28 @@ export const Promotion = ({ data }: any) => {
 	);
 };
 
-// function Arrow(props: { left?: boolean; onClick: (e: any) => void }) {
-// 	return (
-// 		<span
-// 			className={cx('arrowWrap', {
-// 				arrowLeft: props.left,
-// 				arrowRight: !props.left,
-// 			})}
-// 		>
-// 			<svg
-// 				onClick={props.onClick}
-// 				className={cx('arrow')}
-// 				xmlns="http://www.w3.org/2000/svg"
-// 				viewBox="0 0 24 24"
-// 			>
-// 				{props.left && (
-// 					<path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-// 				)}
-// 				{!props.left && (
-// 					<path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-// 				)}
-// 			</svg>
-// 		</span>
-// 	);
-// }
+function Arrow(props: { left?: boolean; onClick: (e: any) => void; ref: any }) {
+	return (
+		<span
+			ref={props.ref}
+			className={cx('arrowWrap', {
+				arrowLeft: props.left,
+				arrowRight: !props.left,
+			})}
+		>
+			<svg
+				onClick={props.onClick}
+				className={cx('arrow')}
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+			>
+				{props.left && (
+					<path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+				)}
+				{!props.left && (
+					<path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+				)}
+			</svg>
+		</span>
+	);
+}
