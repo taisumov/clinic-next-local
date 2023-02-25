@@ -44,7 +44,7 @@ export interface Category {
 	name: string;
 	subItems: string[];
 	id: number;
-	bg: any; // TODO - сменить тип
+	bg: any;
 	text: string;
 	rightSide: boolean;
 	href: string;
