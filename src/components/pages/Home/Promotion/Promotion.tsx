@@ -84,9 +84,9 @@ export const Promotion = () => {
 								))}
 						</>
 						<div className={cx('swiper-pagination')}></div>
-						<Arrow left ref={prevRef} onClick={handleNext} />
+						<Arrow left ref={prevRef} onClick={handlePrev} />
 
-						<Arrow ref={nextRef} onClick={handlePrev} />
+						<Arrow ref={nextRef} onClick={handleNext} />
 					</SwiperComponent>
 				) : (
 					<></>
