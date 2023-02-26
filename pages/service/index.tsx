@@ -25,7 +25,6 @@ export const getStaticProps = async () => {
 
 const ServicePage = ({ priceList }: any) => {
 	const router = useRouter();
-	console.log('router', router.query);
 	return <Service priceList={priceList} path={router.query} />;
 };
 

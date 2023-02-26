@@ -19,7 +19,7 @@ import cx from './index.module.scss';
 // import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
 // import Swiper from 'swiper';
 
-export const Promotion = ({ data }: any) => {
+export const Promotion = () => {
 	const { promotions } = useDataContext();
 	// let sliderRes: any;
 	// const [currentSlide, setCurrentSlide] = useState(0);
@@ -62,9 +62,7 @@ export const Promotion = ({ data }: any) => {
 						className={cx('mySwiper')}
 					>
 						<>
-							{promotions.map((promotion: any) => {
-								console.log(data, '23');
-								return (
+							{promotions.map((promotion: any) => (
 									<SwiperSlide
 										key={promotion?.id}
 										className={cx('swiper-slide')}
@@ -83,8 +81,7 @@ export const Promotion = ({ data }: any) => {
 										/>
 										<div className="swiper-lazy-preloader"></div>
 									</SwiperSlide>
-								);
-							})}
+								))}
 						</>
 						<div className={cx('swiper-pagination')}></div>
 						<Arrow left ref={prevRef} onClick={handleNext} />

@@ -21,7 +21,6 @@ export const getStaticProps = async () => {
 
 const ServicesPage = ({ categories }: any) => {
 	const router = useRouter();
-	console.log('router', router.query);
 
 	return <Services categories={categories} path={router.query} />;
 };

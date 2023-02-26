@@ -1,14 +1,9 @@
-import { getFullUrl } from './getUrl';
+import {getFullUrl} from './getUrl';
 
 interface ApiOptionsObj {
 	urlParamsObject?: Record<string, any>;
 	options?: RequestInit;
 	fullData?: boolean;
-}
-
-interface Api {
-	path: string;
-	options?: ApiOptionsObj;
 }
 
 export async function fetchApi<TResponse>(
@@ -18,7 +13,6 @@ export async function fetchApi<TResponse>(
 	const { urlParamsObject, options, fullData } = init;
 
 	const requestUrl = getFullUrl(path, urlParamsObject ?? {});
-	console.log(requestUrl);
 	const response = await fetch(requestUrl, options);
 
 	if (!response.ok) {
@@ -26,13 +20,10 @@ export async function fetchApi<TResponse>(
 	}
 
 	if (fullData) {
-		const data = (await response.json()) as TResponse;
-		return data;
+		return (await response.json()) as TResponse;
 	}
 
-	const data = (await response.json()) as {
+	return (await response.json()) as {
 		data: Array<Record<'attributes', TResponse>>;
 	};
-
-	return data;
 }
