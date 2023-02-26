@@ -7,11 +7,9 @@ import { fetchApi } from '@/lib/api/fetchApi';
 
 export const getStaticProps = (async () => {
 	try {
-		const [receptions] = await Promise.all([
-			fetchApi('/receptions', {
+		const receptions = await fetchApi('/receptions', {
 				urlParamsObject: { populate: 'deep' },
-			}), // найти reception по id
-		]);
+		});
 
 		return {
 			props: {
@@ -20,16 +18,15 @@ export const getStaticProps = (async () => {
 			revalidate: 1,
 		};
 	} catch (e) {
-		console.log(e);
 		return {
 			notFound: true
 		}
 	}
 }) satisfies GetStaticProps;
 
-const ReseptionPage = ({ receptions }: any) => {
+const ReceptionPage = ({ receptions }: any) => {
 	const router = useRouter();
 	return <Reception receptions={receptions} path={router.query} />;
 };
 
-export default ReseptionPage;
+export default ReceptionPage;
