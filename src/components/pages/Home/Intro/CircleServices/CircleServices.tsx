@@ -51,7 +51,7 @@ export const CircleServices = () => {
 						<CircleWithIcon
 							href={'/services'}
 							key={item.id}
-							imgSrc={item.attributes.bg.data.attributes.url}
+							imgSrc={item.attributes.bg.data[0].attributes.url}
 							text={item.attributes.text}
 							rightSide={index < uslugi.length / 2}
 						/>
