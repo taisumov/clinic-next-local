@@ -6,13 +6,13 @@ import cx from './index.module.scss';
 
 export const Services = ({ categories, path }: any) => {
 	let findedData: any;
-	// const data = categories.data.map(
-	// 	// eslint-disable-next-line no-return-assign
-	// 	(category: any) =>
-	// 		(findedData = category.attributes.subcategories.data.find(
-	// 			(subcategory: any) => subcategory.attributes.text === path.category
-	// 		))
-	// );
+	categories.data.forEach(
+		// eslint-disable-next-line no-return-assign
+		(category: any) =>
+			(findedData = category.attributes.subcategories.data.find(
+				(subcategory: any) => subcategory.attributes.text === path.category
+			))
+	);
 
 	return (
 		<main className={cx('Root')}>
