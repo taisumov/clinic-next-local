@@ -6,18 +6,24 @@ import { Reception } from '@/components/pages/Reception';
 import { fetchApi } from '@/lib/api/fetchApi';
 
 export const getStaticProps = (async () => {
-	const [receptions] = await Promise.all([
-		fetchApi('/receptions', {
-			urlParamsObject: { populate: 'deep' },
-		}), // найти reception по id
-	]);
+	try {
+		const [receptions] = await Promise.all([
+			fetchApi('/receptions', {
+				urlParamsObject: { populate: 'deep' },
+			}), // найти reception по id
+		]);
 
-	return {
-		props: {
-			receptions,
-		},
-		revalidate: 1,
-	};
+		return {
+			props: {
+				receptions,
+			},
+			revalidate: 1,
+		};
+	} catch (e) {
+		return {
+			notFound: true
+		}
+	}
 }) satisfies GetStaticProps;
 
 const ReseptionPage = ({ receptions }: any) => {

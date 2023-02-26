@@ -15,30 +15,36 @@ import {
 } from '@/types/http/homePage.type';
 
 export const getStaticProps = (async () => {
-	const [contacts, about, promotions, licensen, categories] = await Promise.all(
-		[
-			fetchApi<Contacts>('/contacts'),
-			fetchApi<About>('/abouts'),
-			fetchApi<Promotion>('/promotions', {
-				urlParamsObject: { populate: '*' },
-			}),
-			fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
-			fetchApi<Categories>('/categories', {
-				urlParamsObject: { populate: 'deep' },
-			}),
-		]
-	);
+	try {
+		const [contacts, about, promotions, licensen, categories] = await Promise.all(
+			[
+				fetchApi<Contacts>('/contacts'),
+				fetchApi<About>('/abouts'),
+				fetchApi<Promotion>('/promotions', {
+					urlParamsObject: { populate: '*' },
+				}),
+				fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
+				fetchApi<Categories>('/categories', {
+					urlParamsObject: { populate: 'deep' },
+				}),
+			]
+		);
 
-	return {
-		props: {
-			contacts,
-			about,
-			promotions,
-			licensen,
-			categories,
-		},
-		revalidate: 1,
-	};
+		return {
+			props: {
+				contacts,
+				about,
+				promotions,
+				licensen,
+				categories,
+			},
+			revalidate: 1,
+		};
+	} catch (e) {
+		return {
+			notFound: true
+		}
+	}
 }) satisfies GetStaticProps;
 
 const Home = ({

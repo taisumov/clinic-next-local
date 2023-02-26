@@ -5,16 +5,22 @@ import { Service } from '@/components/pages/Service';
 import { fetchApi } from '@/lib/api/fetchApi';
 
 export const getStaticProps = async () => {
-	const priceList = await fetchApi('/receptions', {
-		urlParamsObject: { populate: 'deep' },
-	});
+	try {
+		const priceList = await fetchApi('/receptions', {
+			urlParamsObject: { populate: 'deep' },
+		});
 
-	return {
-		props: {
-			priceList,
-		},
-		revalidate: 1,
-	};
+		return {
+			props: {
+				priceList,
+			},
+			revalidate: 1,
+		};
+	} catch (e) {
+		return {
+			notFound: true
+		}
+	}
 };
 
 const ServicePage = ({ priceList }: any) => {
