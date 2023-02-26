@@ -20,6 +20,7 @@ export const getStaticProps = (async () => {
 			revalidate: 1,
 		};
 	} catch (e) {
+		console.log(e);
 		return {
 			notFound: true
 		}
