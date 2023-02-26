@@ -56,11 +56,11 @@ const Home = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
 	<DataContext.Provider
 		value={{
-			contacts: contacts.data,
-			about: about.data,
-			promotions: promotions.data,
-			licensen: licensen.data,
-			categories,
+			contacts: contacts.data || [],
+			about: about.data || {},
+			promotions: promotions.data || [],
+			licensen: licensen.data || [],
+			categories: categories || {},
 		}}
 	>
 		<HomePage />
