@@ -7,8 +7,8 @@ import { fetchApi } from '@/lib/api/fetchApi';
 import { type Categories } from '@/types/http/homePage.type';
 
 export const getStaticProps = async () => {
-	const categories = await fetchApi<Categories>('/categories', {
-		urlParamsObject: { populate: 'deep' },
+	const categories = await fetchApi<Categories>('/subcategories', {
+		urlParamsObject: { populate: `deep, 2` },
 	});
 
 	return {
@@ -20,9 +20,7 @@ export const getStaticProps = async () => {
 };
 
 const ServicesPage = ({ categories }: any) => {
-	const router = useRouter();
-
-	return <Services categories={categories} path={router.query} />;
+	return <Services categories={categories} />;
 };
 
 export default ServicesPage;

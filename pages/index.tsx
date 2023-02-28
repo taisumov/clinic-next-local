@@ -14,21 +14,22 @@ import {
 	type Promotion,
 } from '@/types/http/homePage.type';
 
-export const getStaticProps = (async () => {
+export const getStaticProps = (async ({ params }) => {
 	try {
-		const [contacts, about, promotions, licensen, categories] = await Promise.all(
-			[
+		const [contacts, about, promotions, licensen, categories] =
+			await Promise.all([
 				fetchApi<Contacts>('/contacts'),
 				fetchApi<About>('/abouts'),
 				fetchApi<Promotion>('/promotions', {
 					urlParamsObject: { populate: '*' },
 				}),
-				fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
-				fetchApi<Categories>('/categories', {
-					urlParamsObject: { populate: 'deep' },
+				fetchApi<Licensen>('/licensens', {
+					urlParamsObject: { populate: '*' },
 				}),
-			]
-		);
+				fetchApi<Categories>('/categories', {
+					urlParamsObject: { populate: 'deep, 2' },
+				}),
+			]);
 
 		return {
 			props: {
@@ -42,8 +43,8 @@ export const getStaticProps = (async () => {
 		};
 	} catch (e) {
 		return {
-			notFound: true
-		}
+			notFound: true,
+		};
 	}
 }) satisfies GetStaticProps;
 
