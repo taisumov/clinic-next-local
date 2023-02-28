@@ -14,7 +14,7 @@ import {
 	type Promotion,
 } from '@/types/http/homePage.type';
 
-export const getStaticProps = (async ({ params }) => {
+export const getStaticProps = (async () => {
 	try {
 		const [contacts, about, promotions, licensen, categories] =
 			await Promise.all([

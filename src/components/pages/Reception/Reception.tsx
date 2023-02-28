@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
 import { DoctorCardsList } from '@/components/base/DoctorCardsList';
 import { Heading } from '@/components/base/Heading';
@@ -15,18 +13,8 @@ const BUTTON = 'Прескурант';
 const BUTTON_TEXT = 'Подробнее...';
 const SERVICES_LIST = 'Ведущие специалисты';
 
-export const Reception = ({ receptions, path }: any) => {
-	const router = useRouter();
-	const [data, setData]: any = useState({});
-	useEffect(() => {
-		setData(
-			receptions.data.find(
-				(recept: any) => recept.id === Number(router.query.service)
-			)
-		);
-	}, [router]);
-
-	console.log(data);
+export const Reception = ({ reception }: any) => {
+	const { data } = reception;
 
 	return (
 		<main className={cx('main')}>

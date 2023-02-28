@@ -1,31 +1,18 @@
-import { useRouter } from 'next/router';
+import {type ParsedUrlQuery} from "querystring";
 
 import { Service } from '@/components/pages/Service';
 
 import { fetchApi } from '@/lib/api/fetchApi';
 
-export const getStaticProps = async () => {
-	try {
-		const priceList = await fetchApi('/receptions', {
-			urlParamsObject: { populate: `deep, 2` },
-		});
+interface Query extends ParsedUrlQuery {
+	service: string
+}
 
-		return {
-			props: {
-				priceList,
-			},
-			revalidate: 1,
-		};
-	} catch (e) {
-		return {
-			notFound: true,
-		};
-	}
-};
+const ServicePage = ({ reception }: any) => <Service reception={reception.data[0].attributes}/>;
 
-const ServicePage = ({ priceList }: any) => {
-	const router = useRouter();
-	return <Service priceList={priceList} path={router.query} />;
-};
+ServicePage.getInitialProps = async ({ query }: any) => {
+	const reception = await fetchApi(`/receptions?filters[id][$eq]=${(query as Query).service}&populate=*`);
+	return { reception }
+}
 
 export default ServicePage;

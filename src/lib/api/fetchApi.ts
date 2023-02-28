@@ -10,6 +10,7 @@ export async function fetchApi<TResponse>(
 	path: string,
 	init: ApiOptionsObj = {}
 ): Promise<any> {
+
 	const { urlParamsObject, options, fullData } = init;
 
 	const requestUrl = getFullUrl(path, urlParamsObject ?? {});
