@@ -51,7 +51,9 @@ export const CircleServices = () => {
 						<CircleWithIcon
 							href={'/services'}
 							key={item.id}
-							imgSrc={item.attributes.bg.data[0].attributes.url}
+							imgSrc={
+								'https://res.cloudinary.com/dsrqil9aq/image/upload/v1677525509/Copy_Copy_Ellipse_49_587c156bd1.png?updated_at=2023-02-27T19:18:29.903Z'
+							} //item.attributes.bg.data[0].attributes.url}
 							text={item.attributes.text}
 							rightSide={index < uslugi.length / 2}
 						/>

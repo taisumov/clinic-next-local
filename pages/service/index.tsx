@@ -7,7 +7,7 @@ import { fetchApi } from '@/lib/api/fetchApi';
 export const getStaticProps = async () => {
 	try {
 		const priceList = await fetchApi('/receptions', {
-			urlParamsObject: { populate: 'deep' },
+			urlParamsObject: { populate: `deep, 2` },
 		});
 
 		return {
@@ -18,8 +18,8 @@ export const getStaticProps = async () => {
 		};
 	} catch (e) {
 		return {
-			notFound: true
-		}
+			notFound: true,
+		};
 	}
 };
 

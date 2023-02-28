@@ -6,7 +6,8 @@ import { Region } from '@/components/base/Region';
 import { ServicesList } from '@/components/base/ServicesList';
 
 import cx from './index.module.scss';
-
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const TITLE = 'Услуги гинекологии';
 const BUTTON = 'Прескурант';
@@ -14,18 +15,28 @@ const BUTTON_TEXT = 'Подробнее...';
 const SERVICES_LIST = 'Ведущие специалисты';
 
 export const Reception = ({ receptions, path }: any) => {
-	const data = receptions.data.find(
-		(recept: any) => recept.id === Number(path.service)
-	);
+	const router = useRouter();
+	const [data, setData]: any = useState({});
+	useEffect(() => {
+		setData(
+			receptions.data.find(
+				(recept: any) => recept.id === Number(router.query.service)
+			)
+		);
+	}, [router]);
+
+	console.log(data);
 
 	return (
 		<main className={cx('main')}>
 			<Region className={cx('title')}>
-				<Heading className={cx('title__head')}>{data?.attributes.link}</Heading>
+				<Heading className={cx('title__head')}>
+					{data?.attributes?.link}
+				</Heading>
 				<hr className={cx('hr')} />
 				<hr className={cx('hr')} />
 				<p className={cx('title__desc')}>
-					{data?.attributes.subcategory.data.attributes.description}
+					{data?.attributes?.subcategory?.data.attributes.description}
 				</p>
 
 				<Link
@@ -42,11 +53,11 @@ export const Reception = ({ receptions, path }: any) => {
 					{SERVICES_LIST}
 				</h2>
 				<DoctorCardsList
-					data={data?.attributes.subcategory.data.attributes.doctors.data}
+					data={data?.attributes?.subcategory.data.attributes?.doctors?.data}
 				/>
 			</section>
 			<h2 className={cx('ServiceTitle')}>{TITLE}</h2>
-			<ServicesList arr={data?.attributes.subcategory.data} />
+			<ServicesList arr={data?.attributes?.subcategory.data} />
 		</main>
 	);
 };
