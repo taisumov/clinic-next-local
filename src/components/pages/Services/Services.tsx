@@ -1,8 +1,9 @@
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 import { ServicesList } from '@/components/base/ServicesList';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
 import cx from './index.module.scss';
 

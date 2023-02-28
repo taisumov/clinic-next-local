@@ -17,7 +17,7 @@ export const LinkIntoView = (props: PropsWithChildren<LinkIntoViewProps>) => {
 		if (element) {
 			element.scrollIntoView({ behavior: 'smooth' });
 		} else {
-			router.push('/');
+			void router.push('/');
 		}
 	};
 

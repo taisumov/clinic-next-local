@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 import { DoctorCardsList } from '@/components/base/DoctorCardsList';
 import { Heading } from '@/components/base/Heading';
@@ -6,8 +8,7 @@ import { Region } from '@/components/base/Region';
 import { ServicesList } from '@/components/base/ServicesList';
 
 import cx from './index.module.scss';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+
 
 const TITLE = 'Услуги гинекологии';
 const BUTTON = 'Прескурант';

@@ -19,8 +19,7 @@ export const getStaticProps = async () => {
 	};
 };
 
-const ServicesPage = ({ categories }: any) => {
-	return <Services categories={categories} />;
-};
-
+const ServicesPage = ({ categories }: any) => (
+	<Services categories={categories} />
+);
 export default ServicesPage;
