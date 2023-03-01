@@ -50,7 +50,7 @@
 }
 
 .circle {
-	@include distribute-on-circle(6, 40rem, 6.5rem);
+	@include distribute-on-circle(12, 50rem, 5.5rem);
 	// background-image: url(./circle.png), url(./logo.png); //url('/7.png');
 	background-position: bottom center;
 	background-repeat: no-repeat;
@@ -64,7 +64,7 @@
 	}
 
 	@include respondBelow(1050px) {
-		@include distribute-on-circle(6, 30rem, 5rem);
+		@include distribute-on-circle(6, 30rem, 4rem);
 	}
 	@include respondBelow(768px) {
 		@include distribute-on-circle(6, 25rem, 3.5rem);
