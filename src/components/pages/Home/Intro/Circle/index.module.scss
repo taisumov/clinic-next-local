@@ -24,7 +24,7 @@
 	font-weight: 700;
 	text-align: center;
 	transition: color 0.3s;
-	width: 150px;
+	width: fit-content;
 
 	@include respondBelow(1200px) {
 		font-size: 18px;
