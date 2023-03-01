@@ -7,7 +7,6 @@ import { ServicesList } from '@/components/base/ServicesList';
 
 import cx from './index.module.scss';
 
-
 const TITLE = 'Услуги';
 const BUTTON = 'Прейскурант';
 const BUTTON_TEXT = 'Подробнее...';
@@ -36,15 +35,19 @@ export const Reception = ({ reception }: any) => {
 					<span className={cx('title__btn-subtext')}>{BUTTON_TEXT}</span>
 				</Link>
 			</Region>
+			{data.attributes.subcategory.data.attributes.doctors.data.length !== 0 ? (
+				<section className={cx('specialists')}>
+					<h2 className={cx('title__head', 'specialists__head')}>
+						{SERVICES_LIST}
+					</h2>
+					<DoctorCardsList
+						data={data?.attributes?.subcategory.data.attributes?.doctors?.data}
+					/>
+				</section>
+			) : (
+				<></>
+			)}
 
-			<section className={cx('specialists')}>
-				<h2 className={cx('title__head', 'specialists__head')}>
-					{SERVICES_LIST}
-				</h2>
-				<DoctorCardsList
-					data={data?.attributes?.subcategory.data.attributes?.doctors?.data}
-				/>
-			</section>
 			<h2 className={cx('ServiceTitle')}>{TITLE}</h2>
 			<ServicesList arr={data?.attributes?.subcategory.data} />
 		</main>
