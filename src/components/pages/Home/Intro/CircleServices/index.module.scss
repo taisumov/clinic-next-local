@@ -17,7 +17,7 @@
 	left: calc(50% - 14rem);
 	width: 28rem;
 	text-align: center;
-	font-family: 'IBM Plex Sans';
+	font-family: 'IBM Plex Sans', sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 6vw;
@@ -50,7 +50,7 @@
 }
 
 .circle {
-	@include distribute-on-circle(6, 40rem, 6.5rem);
+	@include distribute-on-circle(12, 50rem, 5.5rem);
 	// background-image: url(./circle.png), url(./logo.png); //url('/7.png');
 	background-position: bottom center;
 	background-repeat: no-repeat;

@@ -8,8 +8,8 @@ import { ServicesList } from '@/components/base/ServicesList';
 import cx from './index.module.scss';
 
 
-const TITLE = 'Услуги гинекологии';
-const BUTTON = 'Прескурант';
+const TITLE = 'Услуги';
+const BUTTON = 'Прейскурант';
 const BUTTON_TEXT = 'Подробнее...';
 const SERVICES_LIST = 'Ведущие специалисты';
 
