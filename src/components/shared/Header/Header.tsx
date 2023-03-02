@@ -8,7 +8,7 @@ import cx from './index.module.scss';
 export const Header = ({ isBackground }: any) => (
 	<header
 		className={cx('Header')}
-		style={!isBackground ? {} : { background: 'transparent' }}
+		style={isBackground ? {background: 'transparent'} : {}}
 	>
 		<LogoWithName />
 

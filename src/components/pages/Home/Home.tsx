@@ -1,6 +1,8 @@
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 
+import { Header } from '../../shared/Header';
+
 import { About } from './About';
 import { Contacts } from './Contacts';
 import { Footer } from './Footer';
@@ -9,8 +11,6 @@ import { Licensen } from './Licensen';
 import { Map } from './Map';
 import { Promotion } from './Promotion';
 
-import { Burger } from '../../shared/Burger';
-import { Header } from '../../shared/Header';
 
 const HomePage = () => (
 	<>

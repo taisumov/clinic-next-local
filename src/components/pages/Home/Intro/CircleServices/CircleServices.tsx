@@ -1,10 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 import { useDataContext } from '@/context/DataContext';
 
 import { Circle, CircleWithIcon } from '../Circle';
-import Link from 'next/link';
 
 import circleImage from './circle.png';
 
@@ -78,12 +78,13 @@ export const CircleServices = () => {
 					<div className={cx('extraItems')}>
 						{currentLevel.slice(4).map((item: any) => (
 							<Link
+								key={item.attributes.text}
 								href={{
 									pathname: '/services',
 									query: { category: item.attributes.text },
 								}}
 							>
-								<div key={item.attributes.text} className={cx('extraItem')}>
+								<div className={cx('extraItem')}>
 									<div className={cx('extraImageContainer')}>
 										<Image
 											className={cx('extraImage')}

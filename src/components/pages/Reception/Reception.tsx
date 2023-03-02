@@ -40,8 +40,7 @@ export const Reception = ({ reception }: any) => {
 						<span className={cx('title__btn-subtext')}>{BUTTON_TEXT}</span>
 					</Link>
 				</Region>
-				{data.attributes.subcategory.data.attributes.doctors.data.length !==
-				0 ? (
+				{data.attributes.subcategory.data.attributes.doctors.data.length ? (
 					<section className={cx('specialists')}>
 						<h2 className={cx('title__head', 'specialists__head')}>
 							{SERVICES_LIST}
