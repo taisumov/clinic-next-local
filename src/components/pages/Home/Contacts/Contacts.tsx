@@ -19,8 +19,8 @@ export const Contacts = () => {
 					<p key={el}>{el}</p>
 				))}
 				<Heading>Режим работы:</Heading>
-				<p>Пн — Сб: {contacts[0]?.attributes.workingHours} </p>
-				<p>Вс: {contacts[0]?.attributes.workingHours} </p>
+				<p>Пн — Сб: {contacts[0]?.attributes.workingHours.mondaySaturday} </p>
+				<p>Вс: {contacts[0]?.attributes.workingHours.sunday} </p>
 				<Heading hidden>Дополнительные режимы работы</Heading>
 				{contacts[0]?.attributes.additionalSchedule.map((el: any) => (
 					<p key={el}>{el}</p>

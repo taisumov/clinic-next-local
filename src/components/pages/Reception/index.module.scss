@@ -2,6 +2,10 @@
 	@extend %container;
 	background-color: #f5f0eb;
 	background-image: url('/images/bigbg.png');
+	padding-top: 80px;
+	@media screen and (max-width: 828px) {
+		padding-top: 50px;
+	}
 }
 
 .whiteTextBold {

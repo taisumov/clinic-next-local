@@ -19,11 +19,11 @@
 
 .whiteTextBold {
 	color: $light;
-	font-size: rem(30);
+	font-size: rem(38);
 	font-weight: 600;
-
+	margin-left: 10px;
 	@media screen and (max-width: 768px) {
-		font-size: rem(40);
+		font-size: rem(30);
 	}
 }
 

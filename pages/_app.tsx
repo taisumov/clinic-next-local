@@ -23,9 +23,9 @@ const App = ({ Component, pageProps }: AppProps) => (
 				--roboto: ${fontRoboto.style.fontFamily};
 			}
 		`}</style>
-		<AppLayout>
-			<Component {...pageProps} />
-		</AppLayout>
+		{/* <AppLayout> */}
+		<Component {...pageProps} />
+		{/* </AppLayout> */}
 	</>
 );
 

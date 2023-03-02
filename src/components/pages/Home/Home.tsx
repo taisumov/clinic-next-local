@@ -9,19 +9,23 @@ import { Licensen } from './Licensen';
 import { Map } from './Map';
 import { Promotion } from './Promotion';
 
+import { Burger } from '../../shared/Burger';
+import { Header } from '../../shared/Header';
+
 const HomePage = () => (
-		<>
-			<Region Tag="main">
-				<Heading hidden>Главная страница</Heading>
-				<Intro />
-				<Promotion />
-				<About />
-				<Licensen />
-				<Contacts />
-				<Map />
-			</Region>
-			<Footer />
-		</>
-	);
+	<>
+		<Region Tag="main">
+			<Header isBackground={true} />
+			<Heading hidden>Главная страница</Heading>
+			<Intro />
+			<Promotion />
+			<About />
+			<Licensen />
+			<Contacts />
+			<Map />
+		</Region>
+		<Footer />
+	</>
+);
 
 export { HomePage };

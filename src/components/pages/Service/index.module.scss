@@ -2,6 +2,11 @@
 	@extend %container;
 }
 
+.background {
+	background: url('./concept-of-women-s-clothes-with-underwear-isolated-on-white-background\ 1.png')
+		center/cover;
+}
+
 .whiteTextBold {
 	color: $light;
 	font-size: rem(30);
@@ -25,6 +30,10 @@
 	margin-top: rem(50);
 	padding-bottom: rem(36);
 	position: relative;
+	padding-top: 80px;
+	@media screen and (max-width: 828px) {
+		padding-top: 50px;
+	}
 }
 
 .title__head {
