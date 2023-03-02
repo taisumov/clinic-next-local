@@ -64,7 +64,6 @@
 	// background-image: url(./circle.png), url(./logo.png); //url('/7.png');
 	background-position: bottom center;
 	background-repeat: no-repeat;
-
 	background: url('./logo.png') 40% center / contain no-repeat,
 		url('./circle.png') bottom center no-repeat;
 	background-size: 55%, contain;
@@ -90,7 +89,12 @@
 .extraItemsContainer {
 	//background-color: rgba(0, 0, 0, 0.22);
 	//background: linear-gradient(rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0) 90%, rgba(0, 0, 0, 0) 5%);
-	background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 5%, rgba(0,0,0,0.6) 95%, rgba(0,0,0,0) 100%);
+	background: linear-gradient(
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 0.6) 5%,
+		rgba(0, 0, 0, 0.6) 95%,
+		rgba(0, 0, 0, 0) 100%
+	);
 	backdrop-filter: blur(2px);
 	display: flex;
 	flex-direction: column;
@@ -116,7 +120,7 @@
 	font-weight: 700;
 	font-size: 24px;
 	text-transform: capitalize;
-	color: #FFFFFF;
+	color: #ffffff;
 	display: flex;
 	align-items: center;
 	gap: 10px;
