@@ -5,19 +5,13 @@ import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react';
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 
-
 import { useDataContext } from '@/context/DataContext';
-
-
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import cx from './index.module.scss';
-
-// import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
-// import Swiper from 'swiper';
 
 export const Promotion = () => {
 	const { promotions } = useDataContext();

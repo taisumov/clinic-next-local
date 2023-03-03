@@ -7,8 +7,6 @@ import { Heading } from '@/components/base/Heading';
 import { Img } from '@/components/base/Img';
 import { Region } from '@/components/base/Region';
 
-import { getMediaUrl } from '@/lib/api/getUrl';
-
 import { useDataContext } from '@/context/DataContext';
 
 import cx from './index.module.scss';
@@ -97,34 +95,6 @@ export const Licensen = () => {
 					</div>
 				</div>
 			</div>
-			 {/* {loaded && instanceRef.current && ( */}
-				{/* <div className={cx('dots')}> */}
-				{/*	<Arrow */}
-				{/*		left */}
-				{/*		onClick={(e: any) => */}
-				{/*			e.stopPropagation() || instanceRef.current?.prev() */}
-				{/*		} */}
-				{/*	/> */}
-				{/*	{[ */}
-				{/*		...Array(instanceRef.current.track.details.slides.length).keys(), */}
-				{/*	].map((idx) => ( */}
-				{/*		<button */}
-				{/*			key={idx} */}
-				{/*			onClick={() => { */}
-				{/*				instanceRef.current?.moveToIdx(idx); */}
-				{/*			}} */}
-				{/*			className={cx('dot', { */}
-				{/*				active: currentSlide === idx, */}
-				{/*			})} */}
-				{/*		></button> */}
-				{/*	))} */}
-				{/*	<Arrow */}
-				{/*		onClick={(e: any) => */}
-				{/*			e.stopPropagation() || instanceRef.current?.next() */}
-				{/*		} */}
-				{/*	/> */}
-				{/* </div> */}
-			 {/* )} */}
 		</Region>
 	);
 };
