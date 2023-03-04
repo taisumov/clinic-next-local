@@ -20,8 +20,8 @@ export const Reception = ({ reception }: any) => {
 
 	return (
 		<>
+			<Header />
 			<main className={cx('main')}>
-				<Header />
 				<Region className={cx('title')}>
 					<Heading className={cx('title__head')}>
 						{data?.attributes?.link}
