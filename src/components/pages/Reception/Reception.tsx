@@ -9,6 +9,7 @@ import { Burger } from '../../shared/Burger';
 import { Header } from '../../shared/Header';
 
 import cx from './index.module.scss';
+import { useEffect } from 'react';
 
 const TITLE = 'Услуги';
 const BUTTON = 'Прейскурант';
@@ -18,19 +19,28 @@ const SERVICES_LIST = 'Ведущие специалисты';
 export const Reception = ({ reception }: any) => {
 	const { data } = reception;
 
+	useEffect(() => {
+		console.log(reception, '11');
+	}, []);
+
 	return (
 		<>
 			<Header />
 			<main className={cx('main')}>
 				<Region className={cx('title')}>
-					<Heading className={cx('title__head')}>
-						{data?.attributes?.link}
-					</Heading>
-					<hr className={cx('hr')} />
-					<hr className={cx('hr')} />
-					<p className={cx('title__desc')}>
-						{data?.attributes?.subcategory?.data.attributes.description}
-					</p>
+					<div className={cx('background')}>
+						<h2 className={cx('title__head__sub')}>
+							{data?.attributes?.subcategory?.data?.attributes.text}
+						</h2>
+						<Heading className={cx('title__head')}>
+							{data?.attributes?.link}
+						</Heading>
+						<hr className={cx('hr')} />
+						<hr className={cx('hr')} />
+						<p className={cx('title__desc')}>
+							{data?.attributes?.subcategory?.data.attributes.description}
+						</p>
+					</div>
 
 					<Link
 						href={{ pathname: '/service', query: { service: data?.id } }}
@@ -54,9 +64,15 @@ export const Reception = ({ reception }: any) => {
 				) : (
 					<></>
 				)}
-
-				<h2 className={cx('ServiceTitle')}>{TITLE}</h2>
-				<ServicesList arr={data?.attributes?.subcategory.data} />
+				{data?.attributes?.subcategory.data.attributes?.receptions?.data
+					.length > 1 ? (
+					<>
+						<h2 className={cx('ServiceTitle')}>{TITLE}</h2>
+						<ServicesList arr={data?.attributes?.subcategory.data} />
+					</>
+				) : (
+					<></>
+				)}
 			</main>
 		</>
 	);
