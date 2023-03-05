@@ -26,7 +26,7 @@ export const Reception = ({ reception, priceList }: any) => {
 	}, []);
 
 	return (
-		<>
+		<div className={cx('receptionPage')}>
 			<Header />
 			<main className={cx('main')}>
 				<Region className={cx('title')}>
@@ -101,13 +101,13 @@ export const Reception = ({ reception, priceList }: any) => {
 				{data?.attributes?.subcategory.data.attributes?.receptions?.data
 					.length > 1 ? (
 					<>
-						<h2 className={cx('ServiceTitle')}>{TITLE}</h2>
+						<h2 className={cx('reception_ServiceTitle')}>{TITLE}</h2>
 						<ServicesList arr={data?.attributes?.subcategory.data} />
 					</>
 				) : (
 					<></>
 				)}
 			</main>
-		</>
+		</div>
 	);
 };
