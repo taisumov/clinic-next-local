@@ -24,7 +24,7 @@ const Select = ({ className, options, name, label }: SelectProps) => {
 				className={cx('Select', 'classic')}
 			>
 				{options.map((el) => (
-					<option key={el} value={el}>
+					<option className={cx('Option')} key={el} value={el}>
 						{el}
 					</option>
 				))}

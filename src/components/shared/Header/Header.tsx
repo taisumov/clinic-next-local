@@ -5,7 +5,7 @@ import { MakeAnAppointmentDialog } from '../MakeAnAppointmentDialog';
 
 import cx from './index.module.scss';
 
-export const Header = ({ isBackground }: any) => (
+export const Header = ({ isBackground, applicationList }: any) => (
 	<header
 		className={cx('Header')}
 		style={isBackground ? { background: 'transparent' } : {}}
@@ -20,6 +20,6 @@ export const Header = ({ isBackground }: any) => (
 			Контакты
 		</LinkIntoView>
 
-		<MakeAnAppointmentDialog className={cx('hide')} />
+		<MakeAnAppointmentDialog className={cx('hide')} applicationList={applicationList} />
 	</header>
 );
