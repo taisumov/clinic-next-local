@@ -11,6 +11,7 @@ import { Burger } from '../../shared/Burger';
 import { Header } from '../../shared/Header';
 
 import cx from './index.module.scss';
+import { useEffect } from 'react';
 
 const TITLE = 'Услуги';
 const BUTTON = 'Прейскурант';
@@ -27,17 +28,22 @@ export const Reception = ({ reception, priceList }: any) => {
 
 	return (
 		<>
-			<main className={cx('reception_main')}>
-				<Header />
-				<Region className={cx('reception_title')}>
-					<Heading className={cx('reception_title__head')}>
-						{data?.attributes?.link}
-					</Heading>
-					<hr className={cx('reception_hr')} />
-					<hr className={cx('reception_hr')} />
-					<p className={cx('reception_title__desc')}>
-						{data?.attributes?.subcategory?.data.attributes.description}
-					</p>
+			<Header />
+			<main className={cx('main')}>
+				<Region className={cx('title')}>
+					<div className={cx('background')}>
+						<h2 className={cx('title__head__sub')}>
+							{data?.attributes?.subcategory?.data?.attributes.text}
+						</h2>
+						<Heading className={cx('title__head')}>
+							{data?.attributes?.link}
+						</Heading>
+						<hr className={cx('hr')} />
+						<hr className={cx('hr')} />
+						<p className={cx('title__desc')}>
+							{data?.attributes?.subcategory?.data.attributes.description}
+						</p>
+					</div>
 
 					{/* <Link */}
 					{/*	href={{ pathname: '/service', query: { service: data?.id } }} */}
@@ -101,9 +107,15 @@ export const Reception = ({ reception, priceList }: any) => {
 				) : (
 					<></>
 				)}
-
-				<h2 className={cx('reception_ServiceTitle')}>{TITLE}</h2>
-				<ServicesList arr={data?.attributes?.subcategory.data} />
+				{data?.attributes?.subcategory.data.attributes?.receptions?.data
+					.length > 1 ? (
+					<>
+						<h2 className={cx('ServiceTitle')}>{TITLE}</h2>
+						<ServicesList arr={data?.attributes?.subcategory.data} />
+					</>
+				) : (
+					<></>
+				)}
 			</main>
 		</>
 	);

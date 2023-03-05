@@ -1,6 +1,6 @@
 import Link, { type LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
-import { type PropsWithChildren } from 'react';
+import { useEffect, type PropsWithChildren } from 'react';
 
 interface LinkIntoViewProps extends LinkProps {
 	className?: string;
@@ -17,9 +17,13 @@ export const LinkIntoView = (props: PropsWithChildren<LinkIntoViewProps>) => {
 		if (element) {
 			element.scrollIntoView({ behavior: 'smooth' });
 		} else {
-			void router.push('/');
+			void router.push(`/${props.href}`);
 		}
 	};
+
+	useEffect(() => {
+		console.log(props.href);
+	}, []);
 
 	return (
 		<Link onClick={handleClickScroll} {...props}>
