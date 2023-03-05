@@ -51,7 +51,8 @@ export const Reception = ({ reception, priceList }: any) => {
 					{/*	{BUTTON}{' '} */}
 					{/*	<span className={cx('reception_title__btn-subtext')}>{BUTTON_TEXT}</span> */}
 					{/* </Link> */}
-
+				</Region>
+				<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
 					<div
 						onClick={() => {
 							setIsPriceListVisible((prev) => !prev);
@@ -63,29 +64,20 @@ export const Reception = ({ reception, priceList }: any) => {
 							{BUTTON_TEXT}
 						</span>
 					</div>
-				</Region>
+				</div>
 
-				{isPriceListVisible && (
-					<Region Tag="main" className={cx('Root')}>
-						<section className={cx('title')}>
-							<div className={cx('background')}>
-								<h2 className={cx('title__head')}>
-									{priceList.subcategory?.data.attributes.text}
-								</h2>
-								<hr className={cx('hr')} />
-								<hr className={cx('hr')} />
-								<p className={cx('title__desc')}>
-									{priceList.subcategory?.data.attributes.description}
-								</p>
-							</div>
-						</section>
-						<section className={cx('price')}>
-							<PriceBlock
-								priceList={priceList.data[0].attributes.price_lists?.data}
-							/>
-						</section>
-					</Region>
-				)}
+				{/* {isPriceListVisible && ( */}
+				<Region
+					Tag="main"
+					className={isPriceListVisible ? cx('RootActive', 'Root') : cx('Root')}
+				>
+					<section className={cx('price')}>
+						<PriceBlock
+							priceList={priceList.data[0].attributes.price_lists?.data}
+						/>
+					</section>
+				</Region>
+				{/* )} */}
 
 				{data.attributes.subcategory?.data.attributes.doctors?.data.length ? (
 					<section className={cx('reception_specialists')}>
