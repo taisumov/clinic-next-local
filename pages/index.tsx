@@ -16,7 +16,7 @@ import {
 
 export const getStaticProps = (async () => {
 	try {
-		const [contacts, about, promotions, licensen, categories] =
+		const [contacts, about, promotions, licensen, categories, applicationList] =
 			await Promise.all([
 				fetchApi<Contacts>('/contacts'),
 				fetchApi<About>('/abouts'),
@@ -29,6 +29,9 @@ export const getStaticProps = (async () => {
 				fetchApi<Categories>('/categories', {
 					urlParamsObject: { populate: 'deep, 2' },
 				}),
+				fetchApi<any>('/zapis-na-priems', {
+					urlParamsObject: { populate: 'deep, 2' },
+				}),
 			]);
 
 		return {
@@ -38,6 +41,7 @@ export const getStaticProps = (async () => {
 				promotions,
 				licensen,
 				categories,
+				applicationList
 			},
 			revalidate: 1,
 		};
@@ -54,6 +58,7 @@ const Home = ({
 	promotions,
 	licensen,
 	categories,
+	applicationList
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
 	<DataContext.Provider
 		value={{
@@ -62,6 +67,7 @@ const Home = ({
 			promotions: promotions.data || [],
 			licensen: licensen.data || [],
 			categories: categories || {},
+			applicationList
 		}}
 	>
 		<HomePage />

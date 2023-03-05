@@ -7,14 +7,14 @@ import { Content } from './partials/Content';
 
 import cx from './index.module.scss';
 
-export const MakeAnAppointmentDialog = ({ className }: CNProp) => (
+export const MakeAnAppointmentDialog = ({ className, applicationList }: CNProp) => (
 	<div className={cx('Root')}>
 		<Dialog>
 			<DialogTrigger asChild>
 				<button className={cx('Button', 'hide')}>Запись на прием</button>
 			</DialogTrigger>
 			<DialogContent className={cx(className)}>
-				<Content />
+				<Content applicationList={applicationList} />
 			</DialogContent>
 		</Dialog>
 		<Link href="tel:+79256553328" className={cx('Phone')}>

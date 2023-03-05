@@ -1,6 +1,8 @@
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 
+import {useDataContext} from "@/context/DataContext";
+
 import { Header } from '../../shared/Header';
 
 import { About } from './About';
@@ -12,10 +14,12 @@ import { Map } from './Map';
 import { Promotion } from './Promotion';
 
 
-const HomePage = () => (
+const HomePage = () => {
+	const { applicationList } = useDataContext();
+	return (
 	<>
 		<Region Tag="main">
-			<Header isBackground={true} />
+			<Header isBackground={true} applicationList={applicationList}/>
 			<Heading hidden>Главная страница</Heading>
 			<Intro />
 			<Promotion />
@@ -26,6 +30,6 @@ const HomePage = () => (
 		</Region>
 		<Footer />
 	</>
-);
+);}
 
 export { HomePage };

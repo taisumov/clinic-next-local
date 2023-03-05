@@ -7,4 +7,5 @@ export interface DataContextType {
 	promotions: any;
 	licensen: any;
 	categories: any;
+	applicationList: any;
 }

@@ -11,6 +11,7 @@ import cx from './index.module.scss';
 
 interface FormProps {
 	className?: string;
+	applicationList: any
 }
 
 const validationSchema = z.object({
@@ -22,7 +23,7 @@ const validationSchema = z.object({
 
 type ValidationSchema = z.infer<typeof validationSchema>;
 
-export const AppointmentForm = ({ className }: FormProps) => {
+export const AppointmentForm = ({ className, applicationList }: FormProps) => {
 	const methods = useForm<ValidationSchema>({
 		resolver: zodResolver(validationSchema),
 	});
@@ -33,7 +34,11 @@ export const AppointmentForm = ({ className }: FormProps) => {
 		alert(JSON.stringify(data));
 	};
 
-	const Array = ['momo', 'katara', 'appa'];
+	// const Array = ['momo', 'katara', 'appa'];
+	const Array = applicationList.data[0].attributes.bloki_uslugs.data.map((item: any) => item.attributes.link)
+
+	// console.log('1222', applicationList.data[0].attributes.bloki_uslugs.data.map((item: any) => item.attributes.link));
+
 	return (
 		<Form
 			onSubmit={handleSubmit(onSubmit)}
