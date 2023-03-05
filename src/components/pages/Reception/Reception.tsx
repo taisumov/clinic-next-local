@@ -11,7 +11,6 @@ import { Burger } from '../../shared/Burger';
 import { Header } from '../../shared/Header';
 
 import cx from './index.module.scss';
-import { useEffect } from 'react';
 
 const TITLE = 'Услуги';
 const BUTTON = 'Прейскурант';
