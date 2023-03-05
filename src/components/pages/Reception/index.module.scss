@@ -142,6 +142,7 @@
 	@extend %container;
 	// display: none;
 	height: 0;
+	overflow: hidden;
 	translate: -100%;
 	transition: height 0.5s, translate 0.5s;
 }

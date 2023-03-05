@@ -31,9 +31,14 @@ export const Reception = ({ reception, priceList }: any) => {
 			<main className={cx('main')}>
 				<Region className={cx('title')}>
 					<div className={cx('background')}>
-						<h2 className={cx('title__head__sub')}>
-							{data?.attributes?.subcategory?.data?.attributes.text}
-						</h2>
+						{data?.attributes?.subcategory?.data?.attributes.text !==
+						data?.attributes?.link ? (
+							<h2 className={cx('title__head__sub')}>
+								{data?.attributes?.subcategory?.data?.attributes.text}
+							</h2>
+						) : (
+							<></>
+						)}
 						<Heading className={cx('title__head')}>
 							{data?.attributes?.link}
 						</Heading>
