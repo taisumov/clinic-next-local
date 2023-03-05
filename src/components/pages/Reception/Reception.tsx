@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import {useState} from "react";
+import { useEffect, useState } from 'react';
 
 import { DoctorCardsList } from '@/components/base/DoctorCardsList';
 import { Heading } from '@/components/base/Heading';
-import {PriceBlock} from "@/components/base/PriceBlock";
+import { PriceBlock } from '@/components/base/PriceBlock';
 import { Region } from '@/components/base/Region';
 import { ServicesList } from '@/components/base/ServicesList';
 
@@ -19,7 +19,11 @@ const SERVICES_LIST = 'Ведущие специалисты';
 
 export const Reception = ({ reception, priceList }: any) => {
 	const { data } = reception;
-	const [isPriceListVisible, setIsPriceListVisible] = useState<boolean>(false)
+	const [isPriceListVisible, setIsPriceListVisible] = useState<boolean>(false);
+
+	useEffect(() => {
+		console.log(priceList.data, '1231');
+	}, []);
 
 	return (
 		<>
@@ -45,39 +49,47 @@ export const Reception = ({ reception, priceList }: any) => {
 
 					<div
 						onClick={() => {
-							setIsPriceListVisible(prev => !prev)
+							setIsPriceListVisible((prev) => !prev);
 						}}
 						className={cx('reception_title__btn', 'reception_button')}
 					>
 						{BUTTON}{' '}
-						<span className={cx('reception_title__btn-subtext')}>{BUTTON_TEXT}</span>
+						<span className={cx('reception_title__btn-subtext')}>
+							{BUTTON_TEXT}
+						</span>
 					</div>
-
 				</Region>
 
-				{isPriceListVisible &&
+				{isPriceListVisible && (
 					<Region Tag="main" className={cx('Root')}>
 						<section className={cx('title')}>
 							<div className={cx('background')}>
 								<h2 className={cx('title__head')}>
-									{priceList.subcategory.data.attributes.text}
+									{priceList.subcategory?.data.attributes.text}
 								</h2>
 								<hr className={cx('hr')} />
 								<hr className={cx('hr')} />
 								<p className={cx('title__desc')}>
-									{priceList.subcategory.data.attributes.description}
+									{priceList.subcategory?.data.attributes.description}
 								</p>
 							</div>
 						</section>
 						<section className={cx('price')}>
-							<PriceBlock priceList={priceList.price_lists.data} />
+							<PriceBlock
+								priceList={priceList.data[0].attributes.price_lists?.data}
+							/>
 						</section>
 					</Region>
-				}
+				)}
 
-				{data.attributes.subcategory.data.attributes.doctors.data.length ? (
+				{data.attributes.subcategory?.data.attributes.doctors?.data.length ? (
 					<section className={cx('reception_specialists')}>
-						<h2 className={cx('reception_title__head', 'reception_specialists__head')}>
+						<h2
+							className={cx(
+								'reception_title__head',
+								'reception_specialists__head'
+							)}
+						>
 							{SERVICES_LIST}
 						</h2>
 						<DoctorCardsList
