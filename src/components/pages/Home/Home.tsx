@@ -1,9 +1,10 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 
 import { useDataContext } from '@/context/DataContext';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 import { Header } from '../../shared/Header';
 
@@ -20,7 +21,7 @@ const HomePage = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		let query = router.asPath.replace('/', '');
+		const query = router.asPath.replace('/', '');
 		const element = document.getElementById(`${query}`);
 		element?.scrollIntoView({ behavior: 'smooth' });
 	}, [router]);

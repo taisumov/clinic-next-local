@@ -1,11 +1,11 @@
 import Link from 'next/link';
+import { useState } from 'react';
 
 import { Dialog, DialogContent, DialogTrigger } from '@/components/base/Dialog';
 
 import { Content } from './partials/Content';
 
 import cx from './index.module.scss';
-import { useState } from 'react';
 
 export const MakeAnAppointmentDialog = ({
 	className,

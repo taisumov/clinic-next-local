@@ -1,14 +1,12 @@
 import { LinkIntoView } from '@/components/base/LinkIntoView';
 import { Burger } from '@/components/shared/Burger';
 import { LogoWithName } from '@/components/shared/LogoWithName';
-import { useState } from 'react';
 
 import { MakeAnAppointmentDialog } from '../MakeAnAppointmentDialog';
 
 import cx from './index.module.scss';
 
-export const Header = ({ isBackground, applicationList }: any) => {
-	return (
+export const Header = ({ isBackground, applicationList }: any) => (
 		<header
 			className={cx('Header')}
 			style={isBackground ? { background: 'transparent' } : {}}
@@ -31,4 +29,3 @@ export const Header = ({ isBackground, applicationList }: any) => {
 			/>
 		</header>
 	);
-};

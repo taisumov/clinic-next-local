@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState, type LegacyRef } from 'react';
+import { forwardRef, type LegacyRef, useState } from 'react';
 
 import { Dialog, DialogContent, DialogTrigger } from '@/components/base/Dialog';
 import { LinkIntoView } from '@/components/base/LinkIntoView';
@@ -20,6 +20,7 @@ export const Burger = ({ applicationList }: any) => {
 		</Dialog>
 	);
 };
+
 export const BurgerButton = forwardRef(
 	(props, ref: LegacyRef<HTMLButtonElement>) => (
 		<button
