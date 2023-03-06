@@ -12,7 +12,6 @@ export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
-
 	const requestBody = req.body as EmailProps;
 	const TEXT = `
   <p><strong>Услуга:</strong> ${requestBody.select}</p>
@@ -33,12 +32,12 @@ export default async function handler(
 	const mailOptions = {
 		from: 'taisumoov@gmail.com',
 		to: 'islam.taisumov10@gmail.com',
-		subject: `Заявка на услугу "${requestBody.name}"` ,
+		subject: `Заявка на услугу "${requestBody.name}"`,
 		text: requestBody.select,
 		html: TEXT,
 	};
 
-	transporter.sendMail(mailOptions, (error) => {
+	transporter.sendMail(mailOptions, (error: any) => {
 		if (error) {
 			console.log(error);
 			res.status(500).send(error);

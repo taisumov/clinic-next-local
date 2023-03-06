@@ -10,7 +10,7 @@ import cx from './index.module.scss';
 
 import Logo from '/public/icon/headerLogo.svg';
 
-export const Content = ({applicationList}: any) => (
+export const Content = ({ applicationList, setVision }: any) => (
 	<Region className={cx('Region')}>
 		<div className={cx('Header')}>
 			<Logo className={cx('Logo')} alt="logo" />

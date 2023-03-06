@@ -19,10 +19,6 @@ export const Reception = ({ reception, priceList, applicationList }: any) => {
 	const { data } = reception;
 	const [isPriceListVisible, setIsPriceListVisible] = useState<boolean>(false);
 
-	useEffect(() => {
-		console.log(priceList.data, '1231');
-	}, []);
-
 	return (
 		<div className={cx('receptionPage')}>
 			<Header applicationList={applicationList} />
@@ -30,11 +26,11 @@ export const Reception = ({ reception, priceList, applicationList }: any) => {
 				<Region className={cx('title')}>
 					<div className={cx('background')}>
 						{data?.attributes?.subcategory?.data?.attributes.text !==
-						data?.attributes?.link &&
+							data?.attributes?.link && (
 							<h2 className={cx('title__head__sub')}>
 								{data?.attributes?.subcategory?.data?.attributes.text}
 							</h2>
-						}
+						)}
 						<Heading className={cx('title__head')}>
 							{data?.attributes?.link}
 						</Heading>
