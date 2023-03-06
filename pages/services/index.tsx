@@ -8,12 +8,20 @@ interface Query extends ParsedUrlQuery {
 	category: string
 }
 
-const ServicesPage = ({ subcategory }: any) => <Services subcategory={subcategory.data[0]} />
+const ServicesPage = ({ subcategory, applicationList }: any) =>
+	<Services applicationList={applicationList} subcategory={subcategory.data[0]}/>
 
 ServicesPage.getInitialProps = async ({query}: any) => {
 	const subcategory =
 		await fetchApi(`/subcategories?filters[text][$eq]=${(query as Query).category ?? ''}&populate=*`);
-	return { subcategory }
+
+	const applicationList = await fetchApi<any>('/zapis-na-priems', {
+			urlParamsObject: { populate: 'deep, 2' },
+		})
+
+	console.log(123, applicationList)
+
+	return { subcategory, applicationList }
 }
 
 export default ServicesPage;

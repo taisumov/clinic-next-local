@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { DoctorCardsList } from '@/components/base/DoctorCardsList';
@@ -7,7 +6,6 @@ import { PriceBlock } from '@/components/base/PriceBlock';
 import { Region } from '@/components/base/Region';
 import { ServicesList } from '@/components/base/ServicesList';
 
-import { Burger } from '../../shared/Burger';
 import { Header } from '../../shared/Header';
 
 import cx from './index.module.scss';
@@ -17,7 +15,7 @@ const BUTTON = 'Прейскурант';
 const BUTTON_TEXT = 'Подробнее...';
 const SERVICES_LIST = 'Ведущие специалисты';
 
-export const Reception = ({ reception, priceList }: any) => {
+export const Reception = ({ reception, priceList, applicationList }: any) => {
 	const { data } = reception;
 	const [isPriceListVisible, setIsPriceListVisible] = useState<boolean>(false);
 
@@ -27,18 +25,16 @@ export const Reception = ({ reception, priceList }: any) => {
 
 	return (
 		<div className={cx('receptionPage')}>
-			<Header />
+			<Header applicationList={applicationList} />
 			<main className={cx('main')}>
 				<Region className={cx('title')}>
 					<div className={cx('background')}>
 						{data?.attributes?.subcategory?.data?.attributes.text !==
-						data?.attributes?.link ? (
+						data?.attributes?.link &&
 							<h2 className={cx('title__head__sub')}>
 								{data?.attributes?.subcategory?.data?.attributes.text}
 							</h2>
-						) : (
-							<></>
-						)}
+						}
 						<Heading className={cx('title__head')}>
 							{data?.attributes?.link}
 						</Heading>

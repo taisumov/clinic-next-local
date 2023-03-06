@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -23,21 +22,25 @@ const validationSchema = z.object({
 
 type ValidationSchema = z.infer<typeof validationSchema>;
 
-export const AppointmentForm = ({ className, applicationList }: FormProps) => {
+export const AppointmentForm = ({ applicationList }: FormProps) => {
 	const methods = useForm<ValidationSchema>({
 		resolver: zodResolver(validationSchema),
 	});
 
 	const { handleSubmit } = methods;
 
-	const onSubmit: SubmitHandler<ValidationSchema> = (data) => {
-		alert(JSON.stringify(data));
+	const onSubmit: SubmitHandler<ValidationSchema> = async (data) => {
+		await fetch('/api/email', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json, text/plain, */*',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
 	};
 
-	// const Array = ['momo', 'katara', 'appa'];
 	const Array = applicationList.data[0].attributes.bloki_uslugs.data.map((item: any) => item.attributes.link)
-
-	// console.log('1222', applicationList.data[0].attributes.bloki_uslugs.data.map((item: any) => item.attributes.link));
 
 	return (
 		<Form

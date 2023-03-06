@@ -1,14 +1,13 @@
 import { PriceBlock } from '@/components/base/PriceBlock';
 import { Region } from '@/components/base/Region';
 
-import { Burger } from '../../shared/Burger';
 import { Header } from '../../shared/Header';
 
 import cx from './index.module.scss';
 
-export const Service = ({ reception }: any) => (
+export const Service = ({ reception, applicationList }: any) => (
 	<>
-		<Header />
+		<Header applicationList={applicationList} />
 		<Region Tag="main" className={cx('Root')}>
 			<section className={cx('title')}>
 				<div className={cx('background')}>

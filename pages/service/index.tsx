@@ -8,11 +8,17 @@ interface Query extends ParsedUrlQuery {
 	service: string
 }
 
-const ServicePage = ({ reception }: any) => <Service reception={reception.data[0].attributes}/>;
+const ServicePage = ({ reception, applicationList }: any) =>
+	<Service applicationList={applicationList} reception={reception.data[0].attributes}/>;
 
 ServicePage.getInitialProps = async ({ query }: any) => {
 	const reception = await fetchApi(`/receptions?filters[id][$eq]=${(query as Query).service}&populate=*`);
-	return { reception }
+
+	const applicationList = await fetchApi<any>('/zapis-na-priems', {
+		urlParamsObject: { populate: 'deep, 2' },
+	})
+
+	return { reception, applicationList }
 }
 
 export default ServicePage;

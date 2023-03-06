@@ -89,13 +89,17 @@
 	transform: scale(1);
 	transition: transform 0.3s;
 
+	margin-right: rem(40);
+
 	@media screen and (max-width: 768px) {
 		font-size: rem(24);
 		padding: rem(10) rem(70);
 	}
 
 	&:hover {
-		transform: scale(1.1);
+		@media screen and (min-width: 768px) {
+			transform: scale(1.1);
+		}
 	}
 }
 

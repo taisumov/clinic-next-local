@@ -1,4 +1,3 @@
-import { redirect } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
@@ -6,12 +5,11 @@ import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
 import { ServicesList } from '@/components/base/ServicesList';
 
-import { Burger } from '../../shared/Burger';
 import { Header } from '../../shared/Header';
 
 import cx from './index.module.scss';
 
-export const Services = ({ subcategory }: any) => {
+export const Services = ({ subcategory, applicationList }: any) => {
 	const router = useRouter();
 
 	const redirected = subcategory.attributes?.receptions?.data.length === 1;
@@ -33,7 +31,7 @@ export const Services = ({ subcategory }: any) => {
 			) : (
 				<>
 					<div className={cx('headerBackground')}>
-						<Header />
+						<Header applicationList={applicationList} />
 					</div>
 					<div className={cx('container')}>
 						<main className={cx('Root')}>

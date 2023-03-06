@@ -1,4 +1,5 @@
 import { LinkIntoView } from '@/components/base/LinkIntoView';
+import {Burger} from "@/components/shared/Burger";
 import { LogoWithName } from '@/components/shared/LogoWithName';
 
 import { MakeAnAppointmentDialog } from '../MakeAnAppointmentDialog';
@@ -10,7 +11,9 @@ export const Header = ({ isBackground, applicationList }: any) => (
 		className={cx('Header')}
 		style={isBackground ? { background: 'transparent' } : {}}
 	>
-		<LogoWithName />
+		<LogoWithName/>
+
+		<Burger applicationList={applicationList}/>
 
 		<LinkIntoView href="#promo" className={cx('News', 'hide')}>
 			Новости и акции

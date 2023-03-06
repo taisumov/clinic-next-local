@@ -3,17 +3,17 @@ import { forwardRef, type LegacyRef } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/base/Dialog';
 import { LinkIntoView } from '@/components/base/LinkIntoView';
 import { LogoWithName } from '@/components/shared/LogoWithName';
-// import { ModalWithPhone } from '@/components/shared/ModalWithPhone';
+import {MakeAnAppointmentDialog} from "@/components/shared/MakeAnAppointmentDialog";
 
 import cx from './index.module.scss';
 
-export const Burger = () => (
+export const Burger = ({applicationList}: any) => (
 	<Dialog>
 		<DialogTrigger>
 			<BurgerButton />
 		</DialogTrigger>
 		<DialogContent type="Burger">
-			<Menu />;
+			<Menu applicationList={applicationList} />
 		</DialogContent>
 	</Dialog>
 );
@@ -32,9 +32,9 @@ export const BurgerButton = forwardRef(
 
 BurgerButton.displayName = 'BurgerButton';
 
-export const Menu = () => (
+export const Menu = ({applicationList}: any) => (
 	<>
-		<LogoWithName />
+		<LogoWithName withoutText/>
 
 		<nav id="navigation">
 			<ul className={cx('Menu')}>
@@ -44,9 +44,11 @@ export const Menu = () => (
 				<li className={cx('MenuItem')}>
 					<LinkIntoView href="#contacts">Контакты</LinkIntoView>
 				</li>
-				<button className={cx('Button')}>Запись на прием</button>
+				<li className={cx('MenuItem', 'Button')}>
+					<MakeAnAppointmentDialog hide={false} applicationList={applicationList} />
+				</li>
 			</ul>
 		</nav>
-		{/* <ModalWithPhone /> */}
+		 {/* <ModalWithPhone /> */}
 	</>
 );
