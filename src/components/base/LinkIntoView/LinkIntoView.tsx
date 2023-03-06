@@ -14,6 +14,7 @@ export const LinkIntoView = ({ setVision, ...props }: any) => {
 		} else {
 			void router.push(`/${props.href as string}`);
 		}
+		setVision(false);
 	};
 
 	return (
