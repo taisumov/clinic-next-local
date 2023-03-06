@@ -13,7 +13,6 @@ import cx from './index.module.scss';
 
 import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
 
-
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
@@ -46,23 +45,26 @@ export const Licensen = () => {
 				<SwiperComponentLicense
 					ref={sliderRef}
 					modules={[Pagination, Navigation]}
-
 					navigation={{
 						prevEl: leftArr.current,
 						nextEl: rightArr.current,
 					}}
-					breakpoints = {{
+					breakpoints={{
 						550: {
-							slidesPerView: 2, spaceBetween: 30,
+							slidesPerView: 2,
+							spaceBetween: 30,
 						},
 						700: {
-							slidesPerView: 3, spaceBetween: 30,
+							slidesPerView: 3,
+							spaceBetween: 30,
 						},
 						900: {
-							slidesPerView: 4, spaceBetween: 40,
+							slidesPerView: 4,
+							spaceBetween: 40,
 						},
 						1300: {
-							slidesPerView: 5, spaceBetween: 60,
+							slidesPerView: 5,
+							spaceBetween: 60,
 						},
 					}}
 					pagination={{ clickable: true }}
@@ -87,11 +89,11 @@ export const Licensen = () => {
 			<div className={cx('swiperNavbar')}>
 				<div className={cx('dots')}>
 					<div ref={leftArr}>
-						<Arrow left onClick={handlePrev}/>
+						<Arrow left onClick={handlePrev} />
 					</div>
 
 					<div ref={rightArr}>
-						<Arrow onClick={handleNext}/>
+						<Arrow onClick={handleNext} />
 					</div>
 				</div>
 			</div>

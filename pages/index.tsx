@@ -21,7 +21,7 @@ export const getStaticProps = (async () => {
 				fetchApi<Contacts>('/contacts'),
 				fetchApi<About>('/abouts'),
 				fetchApi<Promotion>('/promotions', {
-					urlParamsObject: { populate: '*' },
+					urlParamsObject: { populate: 'deep, 2' },
 				}),
 				fetchApi<Licensen>('/licensens', {
 					urlParamsObject: { populate: '*' },
@@ -41,7 +41,7 @@ export const getStaticProps = (async () => {
 				promotions,
 				licensen,
 				categories,
-				applicationList
+				applicationList,
 			},
 			revalidate: 1,
 		};
@@ -58,16 +58,16 @@ const Home = ({
 	promotions,
 	licensen,
 	categories,
-	applicationList
+	applicationList,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
 	<DataContext.Provider
 		value={{
 			contacts: contacts.data || [],
 			about: about.data || {},
-			promotions: promotions.data || [],
+			promotions: promotions.data[0].attributes.image.data,
 			licensen: licensen.data || [],
 			categories: categories || {},
-			applicationList
+			applicationList,
 		}}
 	>
 		<HomePage />

@@ -1,6 +1,5 @@
 @use 'sass:color';
 
-
 .navigationWrapper {
 	padding-inline: 1rem;
 	position: relative;
@@ -9,7 +8,6 @@
 	}
 
 	.swiperSlide {
-
 		border-radius: 16px;
 		overflow: hidden;
 
@@ -18,7 +16,7 @@
 		align-items: center;
 		height: 350px;
 
-		@media(max-width: 550px) {
+		@media (max-width: 550px) {
 			height: 500px;
 		}
 
@@ -38,7 +36,6 @@
 	margin-top: 2rem;
 	padding-left: var(--space-80);
 }
-
 
 //.navigationWrapper {
 //	padding-inline: 1rem;
