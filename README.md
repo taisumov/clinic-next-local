@@ -110,7 +110,7 @@ strapi().start();
 - Запуск pm2:
 ```bash
 pm2 start ecosystem.config.js
-- ```
+```
 - Остановка процесса pm2:
 ```bash
 pm2 stop {{ Название процесса }}
