@@ -1,45 +1,43 @@
-import { useKeenSlider } from 'keen-slider/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Autoplay, Navigation, Pagination } from 'swiper';
+import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react';
 
 import { Heading } from '@/components/base/Heading';
-import { Img } from '@/components/base/Img';
 import { Region } from '@/components/base/Region';
 
-import { getMediaUrl } from '@/lib/api/getUrl';
-import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
-
 import { useDataContext } from '@/context/DataContext';
-
-import { Autoplay, Pagination, Navigation } from 'swiper';
-import { Swiper as SwiperComponent, useSwiper } from 'swiper/react';
-import { SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import cx from './index.module.scss';
-// import Swiper from 'swiper';
 
-export const Promotion = ({ data }: any) => {
+export const Promotion = () => {
 	const { promotions } = useDataContext();
-	let sliderRes: any;
-	const [currentSlide, setCurrentSlide] = useState(0);
+	// let sliderRes: any;
+	const [slides, setSlides] = useState([]);
 	const [loaded, setLoaded] = useState(true);
 
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
 	const swiper = useRef<any>(null);
 
+	useEffect(() => {
+		setSlides(promotions);
+		console.log(promotions, '33');
+	}, [promotions]);
+
 	const handleNext = useCallback(() => {
 		if (!swiper.current) return;
 		swiper.current.swiper.slideNext();
-	}, []);
+		console.log(promotions, '33');
+	}, [promotions]);
 
 	const handlePrev = useCallback(() => {
 		if (!swiper.current) return;
 		swiper.current.swiper.slidePrev();
-	}, []);
+	}, [promotions]);
 
 	return (
 		<Region className={cx('promotion')} id="promo">
@@ -64,32 +62,28 @@ export const Promotion = ({ data }: any) => {
 						className={cx('mySwiper')}
 					>
 						<>
-							{promotions.map((promotion: any) => {
-								console.log(data, '23');
-								return (
-									<SwiperSlide
-										key={promotion?.id}
-										className={cx('swiper-slide')}
-									>
-										<img
-											src={`${promotion?.attributes.image.data[0].attributes.url}`}
-											alt={''}
-											style={{
-												objectFit: 'cover',
-												width: '100%',
-												height: '100%',
-											}}
-											loading="lazy"
-										/>
-										<div className="swiper-lazy-preloader"></div>
-									</SwiperSlide>
-								);
-							})}
+							{promotions.map((promotion: any) => (
+								<SwiperSlide key={promotion?.id} className={cx('swiper-slide')}>
+									{/* eslint-disable-next-line @next/next/no-img-element */}
+									<img
+										/* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
+										src={`${promotion?.attributes.url}`}
+										alt={''}
+										style={{
+											objectFit: 'cover',
+											width: '100%',
+											height: '100%',
+										}}
+										loading="lazy"
+									/>
+									<div className="swiper-lazy-preloader"></div>
+								</SwiperSlide>
+							))}
 						</>
 						<div className={cx('swiper-pagination')}></div>
-						<Arrow left ref={prevRef} onClick={(e: any) => handleNext()} />
+						<Arrow left ref={prevRef} onClick={handlePrev} />
 
-						<Arrow ref={nextRef} onClick={(e: any) => handlePrev()} />
+						<Arrow ref={nextRef} onClick={handleNext} />
 					</SwiperComponent>
 				) : (
 					<></>

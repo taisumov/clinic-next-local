@@ -31,6 +31,7 @@
 
 .hide {
 	@include respondBelow($breakpointBurger) {
+		display: none;
 		font-size: 14px;
 	}
 }

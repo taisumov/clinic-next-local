@@ -8,7 +8,7 @@ import cx from './index.module.scss';
 export const ServicesList = ({ arr }: any) => (
 	<Region className={cx('services')}>
 		<div className={cx('services__list')}>
-			{arr?.attributes?.receptions.data.map((elem: any) => (
+			{arr?.attributes?.receptions?.data.map((elem: any) => (
 				<Card
 					key={elem.id}
 					href={`/reception?service=${Number(elem.id)}`}

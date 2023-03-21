@@ -15,30 +15,41 @@ import {
 } from '@/types/http/homePage.type';
 
 export const getStaticProps = (async () => {
-	const [contacts, about, promotions, licensen, categories] = await Promise.all(
-		[
-			fetchApi<Contacts>('/contacts'),
-			fetchApi<About>('/abouts'),
-			fetchApi<Promotion>('/promotions', {
-				urlParamsObject: { populate: '*' },
-			}),
-			fetchApi<Licensen>('/licensens', { urlParamsObject: { populate: '*' } }),
-			fetchApi<Categories>('/categories', {
-				urlParamsObject: { populate: 'deep' },
-			}),
-		]
-	);
+	try {
+		const [contacts, about, promotions, licensen, categories, applicationList] =
+			await Promise.all([
+				fetchApi<Contacts>('/contacts'),
+				fetchApi<About>('/abouts'),
+				fetchApi<Promotion>('/promotions', {
+					urlParamsObject: { populate: 'deep, 2' },
+				}),
+				fetchApi<Licensen>('/licensens', {
+					urlParamsObject: { populate: '*' },
+				}),
+				fetchApi<Categories>('/categories', {
+					urlParamsObject: { populate: 'deep, 2' },
+				}),
+				fetchApi<any>('/zapis-na-priems', {
+					urlParamsObject: { populate: 'deep, 2' },
+				}),
+			]);
 
-	return {
-		props: {
-			contacts,
-			about,
-			promotions,
-			licensen,
-			categories,
-		},
-		revalidate: 1,
-	};
+		return {
+			props: {
+				contacts,
+				about,
+				promotions,
+				licensen,
+				categories,
+				applicationList,
+			},
+			revalidate: 1,
+		};
+	} catch (e) {
+		return {
+			notFound: true,
+		};
+	}
 }) satisfies GetStaticProps;
 
 const Home = ({
@@ -47,14 +58,16 @@ const Home = ({
 	promotions,
 	licensen,
 	categories,
+	applicationList,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
 	<DataContext.Provider
 		value={{
-			contacts: contacts.data,
-			about: about.data,
-			promotions: promotions.data,
-			licensen: licensen.data,
-			categories,
+			contacts: contacts.data || [],
+			about: about.data || {},
+			promotions: promotions.data[0].attributes.image.data,
+			licensen: licensen.data || [],
+			categories: categories || {},
+			applicationList,
 		}}
 	>
 		<HomePage />

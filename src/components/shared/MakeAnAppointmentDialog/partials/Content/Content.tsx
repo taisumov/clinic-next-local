@@ -10,14 +10,14 @@ import cx from './index.module.scss';
 
 import Logo from '/public/icon/headerLogo.svg';
 
-export const Content = () => (
+export const Content = ({ applicationList, setVision }: any) => (
 	<Region className={cx('Region')}>
 		<div className={cx('Header')}>
 			<Logo className={cx('Logo')} alt="logo" />
 			<CompanyName />
 		</div>
 		<Heading className={cx('Heading')}>Запись на прием</Heading>
-		<AppointmentForm />
+		<AppointmentForm applicationList={applicationList} />
 	</Region>
 );
 

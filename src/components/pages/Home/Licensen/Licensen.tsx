@@ -7,14 +7,11 @@ import { Heading } from '@/components/base/Heading';
 import { Img } from '@/components/base/Img';
 import { Region } from '@/components/base/Region';
 
-import { getMediaUrl } from '@/lib/api/getUrl';
-
 import { useDataContext } from '@/context/DataContext';
 
 import cx from './index.module.scss';
 
 import SolidArrowLeft from 'public/icon/solidArrowLeft.svg';
-
 
 import 'swiper/scss';
 import 'swiper/scss/navigation';
@@ -48,23 +45,26 @@ export const Licensen = () => {
 				<SwiperComponentLicense
 					ref={sliderRef}
 					modules={[Pagination, Navigation]}
-
 					navigation={{
 						prevEl: leftArr.current,
 						nextEl: rightArr.current,
 					}}
-					breakpoints = {{
+					breakpoints={{
 						550: {
-							slidesPerView: 2, spaceBetween: 30,
+							slidesPerView: 2,
+							spaceBetween: 30,
 						},
 						700: {
-							slidesPerView: 3, spaceBetween: 30,
+							slidesPerView: 3,
+							spaceBetween: 30,
 						},
 						900: {
-							slidesPerView: 4, spaceBetween: 40,
+							slidesPerView: 4,
+							spaceBetween: 40,
 						},
 						1300: {
-							slidesPerView: 5, spaceBetween: 60,
+							slidesPerView: 5,
+							spaceBetween: 60,
 						},
 					}}
 					pagination={{ clickable: true }}
@@ -89,42 +89,14 @@ export const Licensen = () => {
 			<div className={cx('swiperNavbar')}>
 				<div className={cx('dots')}>
 					<div ref={leftArr}>
-						<Arrow left onClick={handlePrev}/>
+						<Arrow left onClick={handlePrev} />
 					</div>
 
 					<div ref={rightArr}>
-						<Arrow onClick={handleNext}/>
+						<Arrow onClick={handleNext} />
 					</div>
 				</div>
 			</div>
-			 {/* {loaded && instanceRef.current && ( */}
-				{/* <div className={cx('dots')}> */}
-				{/*	<Arrow */}
-				{/*		left */}
-				{/*		onClick={(e: any) => */}
-				{/*			e.stopPropagation() || instanceRef.current?.prev() */}
-				{/*		} */}
-				{/*	/> */}
-				{/*	{[ */}
-				{/*		...Array(instanceRef.current.track.details.slides.length).keys(), */}
-				{/*	].map((idx) => ( */}
-				{/*		<button */}
-				{/*			key={idx} */}
-				{/*			onClick={() => { */}
-				{/*				instanceRef.current?.moveToIdx(idx); */}
-				{/*			}} */}
-				{/*			className={cx('dot', { */}
-				{/*				active: currentSlide === idx, */}
-				{/*			})} */}
-				{/*		></button> */}
-				{/*	))} */}
-				{/*	<Arrow */}
-				{/*		onClick={(e: any) => */}
-				{/*			e.stopPropagation() || instanceRef.current?.next() */}
-				{/*		} */}
-				{/*	/> */}
-				{/* </div> */}
-			 {/* )} */}
 		</Region>
 	);
 };

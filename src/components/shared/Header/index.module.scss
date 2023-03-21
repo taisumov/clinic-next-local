@@ -13,13 +13,20 @@
 	max-width: var(--content-width);
 	padding-inline: var(7);
 	padding-right: rem(35);
+	padding-left: rem(35);
 	padding-top: rem(15);
 	position: absolute;
 	top: 0;
+	//left: 0;
+	//width: 100%;
+	z-index: 10;
 	width: 100%;
-	z-index: 1;
-
+	// width: calc(100% - var(--space-80));
+	// left: var(--space-80);
+	background: url('./headerBackground.png');
 	@include respondAbove($breakpointBurger) {
+		width: 100%;
+		left: 0;
 		border-bottom: 16px solid #0072ba29;
 		gap: 4%;
 		padding-inline: rem(50);

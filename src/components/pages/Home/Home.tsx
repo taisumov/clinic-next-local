@@ -1,6 +1,12 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
 import { Heading } from '@/components/base/Heading';
 import { Region } from '@/components/base/Region';
-import { useEffect } from 'react';
+
+import { useDataContext } from '@/context/DataContext';
+
+import { Header } from '../../shared/Header';
 
 import { About } from './About';
 import { Contacts } from './Contacts';
@@ -10,14 +16,20 @@ import { Licensen } from './Licensen';
 import { Map } from './Map';
 import { Promotion } from './Promotion';
 
-const HomePage = ({ promotion }: any) => {
+const HomePage = () => {
+	const { applicationList } = useDataContext();
+	const router = useRouter();
+
 	useEffect(() => {
-		console.log(promotion);
-	}, []);
+		const query = router.asPath.replace('/', '');
+		const element = document.getElementById(`${query}`);
+		element?.scrollIntoView({ behavior: 'smooth' });
+	}, [router]);
 
 	return (
 		<>
 			<Region Tag="main">
+				<Header isBackground={true} applicationList={applicationList} />
 				<Heading hidden>Главная страница</Heading>
 				<Intro />
 				<Promotion />

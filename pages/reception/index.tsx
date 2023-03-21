@@ -1,28 +1,26 @@
-import { type GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
+import {type ParsedUrlQuery} from "querystring";
 
 import { Reception } from '@/components/pages/Reception';
 
 import { fetchApi } from '@/lib/api/fetchApi';
 
-export const getStaticProps = (async () => {
-	const [receptions] = await Promise.all([
-		fetchApi('/receptions', {
-			urlParamsObject: { populate: 'deep' },
-		}), // найти reception по id
-	]);
+interface Query extends ParsedUrlQuery {
+	service: string
+}
 
-	return {
-		props: {
-			receptions,
-		},
-		revalidate: 1,
-	};
-}) satisfies GetStaticProps;
+const ReceptionPage = ({ reception, priceList, applicationList }: any) =>
+	<Reception applicationList={applicationList} reception={reception} priceList={priceList}/>
 
-const ReseptionPage = ({ receptions }: any) => {
-	const router = useRouter();
-	return <Reception receptions={receptions} path={router.query} />;
-};
+ReceptionPage.getInitialProps = async ({query}: any) => {
+	const reception = await fetchApi(`/receptions/${(query as Query).service ?? ''}`, {
+			urlParamsObject: { populate: `deep, 4` },
+	});
+	const priceList = await fetchApi(`/receptions?filters[id][$eq]=${(query as Query).service}&populate=*`);
 
-export default ReseptionPage;
+	const applicationList = await fetchApi<any>('/zapis-na-priems', {
+		urlParamsObject: { populate: 'deep, 2' },
+	})
+	return { reception, priceList, applicationList }
+}
+
+export default ReceptionPage;

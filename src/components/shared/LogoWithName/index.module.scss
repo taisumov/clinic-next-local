@@ -54,8 +54,6 @@
 	background-clip: text;
 	text-fill-color: transparent;
 
-	border: 0.5px solid rgba(255, 255, 255, 0.59);
-
 	@include respondAbove('830px') {
 		display: none;
 	}

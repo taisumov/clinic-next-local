@@ -2,6 +2,11 @@
 	@extend %container;
 }
 
+.background {
+	background: url('./concept-of-women-s-clothes-with-underwear-isolated-on-white-background\ 1.png')
+		center/cover;
+}
+
 .whiteTextBold {
 	color: $light;
 	font-size: rem(30);
@@ -25,6 +30,10 @@
 	margin-top: rem(50);
 	padding-bottom: rem(36);
 	position: relative;
+	padding-top: 80px;
+	@media screen and (max-width: 828px) {
+		padding-top: 50px;
+	}
 }
 
 .title__head {
@@ -96,6 +105,7 @@
 
 .price {
 	margin-top: rem(70);
+	padding-bottom: 40px;
 
 	&__content {
 		display: flex;
@@ -189,7 +199,7 @@
 		}
 
 		// background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='4' stroke-dasharray='23' stroke-dashoffset='30' stroke-linecap='square'/%3e%3c/svg%3e");
-		&:nth-child(3n) {
+		&:nth-child(3n - 2) {
 			.price__name {
 				background: rgba(0, 151, 225, 0.27);
 			}
@@ -199,7 +209,7 @@
 			}
 		}
 
-		&:nth-child(3n + 1) {
+		&:nth-child(3n - 1) {
 			.price__name {
 				background: #f4ebd3;
 			}
@@ -209,13 +219,13 @@
 			}
 		}
 
-		&:nth-child(3n + 2) {
+		&:nth-child(3n) {
 			.price__name {
 				background: rgba(253, 254, 254, 0.56);
 			}
 
 			.price__cost {
-				backgrpound: rgba(255, 255, 255, 0.56);
+				background: rgba(255, 255, 255, 0.56);
 			}
 		}
 	}

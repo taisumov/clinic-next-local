@@ -1,5 +1,14 @@
+.RootRoot {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 60px;
+}
+
 .Root {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
 	font-size: 20px;
 	justify-content: center;
 	position: relative;
@@ -12,12 +21,13 @@
 }
 
 .textContainer {
+	cursor: pointer;
 	position: absolute;
 	top: calc(50% - 2vw);
 	left: calc(50% - 14rem);
 	width: 28rem;
 	text-align: center;
-	font-family: 'IBM Plex Sans';
+	font-family: 'IBM Plex Sans', sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 6vw;
@@ -50,11 +60,10 @@
 }
 
 .circle {
-	@include distribute-on-circle(6, 40rem, 6.5rem);
+	@include distribute-on-circle(5, 35rem, 4.5rem);
 	// background-image: url(./circle.png), url(./logo.png); //url('/7.png');
 	background-position: bottom center;
 	background-repeat: no-repeat;
-
 	background: url('./logo.png') 40% center / contain no-repeat,
 		url('./circle.png') bottom center no-repeat;
 	background-size: 55%, contain;
@@ -64,15 +73,86 @@
 	}
 
 	@include respondBelow(1050px) {
-		@include distribute-on-circle(6, 30rem, 5rem);
+		@include distribute-on-circle(5, 30rem, 5rem);
 	}
 	@include respondBelow(768px) {
-		@include distribute-on-circle(6, 25rem, 3.5rem);
+		@include distribute-on-circle(5, 25rem, 3.5rem);
 	}
 	@include respondBelow(580px) {
-		@include distribute-on-circle(6, 22rem, 2.5rem);
+		@include distribute-on-circle(5, 22rem, 2.5rem);
 	}
 	@include respondBelow(400px) {
-		@include distribute-on-circle(6, 18rem, 2.2rem);
+		@include distribute-on-circle(5, 18rem, 2.2rem);
 	}
+}
+
+.extraItemsContainer {
+	margin-top: 8vw;
+	//background-color: rgba(0, 0, 0, 0.22);
+	//background: linear-gradient(rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0) 90%, rgba(0, 0, 0, 0) 5%);
+	background: linear-gradient(
+		rgba(0, 0, 0, 0) 0%,
+		rgba(0, 0, 0, 0.6) 5%,
+		rgba(0, 0, 0, 0.6) 95%,
+		rgba(0, 0, 0, 0) 100%
+	);
+	backdrop-filter: blur(2px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding: 40px 0;
+}
+
+.extraItems {
+	max-width: 800px;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+	@include respondBelow(900px) {
+		padding: 5vw;
+	}
+}
+
+.extraItem {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	text-transform: capitalize;
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	hyphens: auto;
+	word-wrap: break-word;
+	@include respondBelow(900px) {
+		font-size: 3vw;
+	}
+}
+
+.extraImageContainer {
+	position: relative;
+	width: 60px;
+	height: 60px;
+
+	flex-shrink: 0;
+
+	@include respondBelow(600px) {
+		width: 22px;
+		height: 22px;
+	}
+
+	@include respondBelow(900px) {
+		width: 40px;
+		height: 40px;
+	}
+}
+
+.extraImage {
+	object-fit: contain;
+	position: absolute;
+	top: 0;
+	left: 0;
 }

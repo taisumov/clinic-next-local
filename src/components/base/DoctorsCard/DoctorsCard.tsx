@@ -41,9 +41,9 @@ export const DoctorsCard = ({
 		<div className={cx('cards__text')}>
 			<div className={cx('cards__text-blur')}></div>
 			<p className={cx('cards__text-desc', 'cards__text-desc--heading')}>
-				{grades.data[0].attributes.left}
+				{grades?.data[0]?.attributes.left}
 				<span className={cx('whiteTextBold')}>{age}</span>{' '}
-				{grades.data[0].attributes.right}
+				{grades?.data[0]?.attributes.right}
 			</p>
 			<p
 				className={cx(

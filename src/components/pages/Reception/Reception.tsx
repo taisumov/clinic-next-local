@@ -1,60 +1,110 @@
-import parse from 'html-react-parser';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { DoctorCardsList } from '@/components/base/DoctorCardsList';
 import { Heading } from '@/components/base/Heading';
+import { PriceBlock } from '@/components/base/PriceBlock';
 import { Region } from '@/components/base/Region';
 import { ServicesList } from '@/components/base/ServicesList';
 
-import { SERVICES_LIST_SERVICE } from '../Services/constants';
-
-import { HEADING } from './constants/constants';
+import { Header } from '../../shared/Header';
 
 import cx from './index.module.scss';
 
-
-const TITLE = 'Услуги гинекологии';
-const BUTTON = 'Прескурант';
+const TITLE = 'Услуги';
+const BUTTON = 'Прейскурант';
 const BUTTON_TEXT = 'Подробнее...';
 const SERVICES_LIST = 'Ведущие специалисты';
 
-export const Reception = ({ receptions, path }: any) => {
-	const data = receptions.data.find(
-		(recept: any) => recept.id === Number(path.service)
-	);
-	console.log(data, '213');
+export const Reception = ({ reception, priceList, applicationList }: any) => {
+	const { data } = reception;
+	const [isPriceListVisible, setIsPriceListVisible] = useState<boolean>(false);
 
 	return (
-		<main className={cx('main')}>
-			<Region className={cx('title')}>
-				<Heading className={cx('title__head')}>{data?.attributes.link}</Heading>
-				<hr className={cx('hr')} />
-				<hr className={cx('hr')} />
-				<p className={cx('title__desc')}>
-					{data?.attributes.subcategory.data.attributes.description}
-				</p>
+		<div className={cx('receptionPage')}>
+			<Header applicationList={applicationList} />
+			<main className={cx('main')}>
+				<Region className={cx('title')}>
+					<div className={cx('background')}>
+						{data?.attributes?.subcategory?.data?.attributes.text !==
+							data?.attributes?.link && (
+							<h2 className={cx('title__head__sub')}>
+								{data?.attributes?.subcategory?.data?.attributes.text}
+							</h2>
+						)}
+						<Heading className={cx('title__head')}>
+							{data?.attributes?.link}
+						</Heading>
+						<hr className={cx('hr')} />
+						<hr className={cx('hr')} />
+						<p className={cx('title__desc')}>
+							{data?.attributes?.subcategory?.data.attributes.description}
+						</p>
+					</div>
 
-				<Link
-					href={{ pathname: '/service', query: { service: data?.id } }}
-					className={cx('title__btn', 'button')}
+					{/* <Link */}
+					{/*	href={{ pathname: '/service', query: { service: data?.id } }} */}
+					{/*	className={cx('reception_title__btn', 'reception_button')} */}
+					{/* > */}
+					{/*	{BUTTON}{' '} */}
+					{/*	<span className={cx('reception_title__btn-subtext')}>{BUTTON_TEXT}</span> */}
+					{/* </Link> */}
+				</Region>
+				<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+					<div
+						onClick={() => {
+							setIsPriceListVisible((prev) => !prev);
+						}}
+						className={cx('reception_title__btn', 'reception_button')}
+					>
+						{BUTTON}{' '}
+						<span className={cx('reception_title__btn-subtext')}>
+							{BUTTON_TEXT}
+						</span>
+					</div>
+				</div>
+
+				{/* {isPriceListVisible && ( */}
+				<Region
+					Tag="main"
+					className={isPriceListVisible ? cx('RootActive', 'Root') : cx('Root')}
 				>
-					{BUTTON}{' '}
-					<span className={cx('title__btn-subtext')}>{BUTTON_TEXT}</span>
-				</Link>
-			</Region>
+					<section className={cx('price')}>
+						<PriceBlock
+							priceList={priceList.data[0].attributes.price_lists?.data}
+						/>
+					</section>
+				</Region>
+				{/* )} */}
 
-			<section className={cx('specialists')}>
-				<h2 className={cx('title__head', 'specialists__head')}>
-					{SERVICES_LIST}
-				</h2>
-				<DoctorCardsList
-					data={data?.attributes.subcategory.data.attributes.doctors.data}
-				/>
-			</section>
-			<h2 className={cx('ServiceTitle')}>{TITLE}</h2>
-			<ServicesList arr={data?.attributes.subcategory.data} />
-		</main>
+				{data.attributes.subcategory?.data.attributes.doctors?.data.length ? (
+					<section className={cx('reception_specialists')}>
+						<h2
+							className={cx(
+								'reception_title__head',
+								'reception_specialists__head'
+							)}
+						>
+							{SERVICES_LIST}
+						</h2>
+						<DoctorCardsList
+							data={
+								data?.attributes?.subcategory.data.attributes?.doctors?.data
+							}
+						/>
+					</section>
+				) : (
+					<></>
+				)}
+				{data?.attributes?.subcategory.data.attributes?.receptions?.data
+					.length > 1 ? (
+					<>
+						<h2 className={cx('reception_ServiceTitle')}>{TITLE}</h2>
+						<ServicesList arr={data?.attributes?.subcategory.data} />
+					</>
+				) : (
+					<></>
+				)}
+			</main>
+		</div>
 	);
 };

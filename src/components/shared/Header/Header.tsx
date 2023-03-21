@@ -1,22 +1,31 @@
 import { LinkIntoView } from '@/components/base/LinkIntoView';
+import { Burger } from '@/components/shared/Burger';
 import { LogoWithName } from '@/components/shared/LogoWithName';
 
 import { MakeAnAppointmentDialog } from '../MakeAnAppointmentDialog';
 
 import cx from './index.module.scss';
 
-export const Header = () => (
-	<header className={cx('Header')}>
-		<LogoWithName />
+export const Header = ({ isBackground, applicationList }: any) => (
+		<header
+			className={cx('Header')}
+			style={isBackground ? { background: 'transparent' } : {}}
+		>
+			<LogoWithName />
 
-		<LinkIntoView href="#promo" className={cx('News', 'hide')}>
-			Новости и акции
-		</LinkIntoView>
+			<Burger applicationList={applicationList} />
 
-		<LinkIntoView href="#contacts" className={cx('Contacts', 'hide')}>
-			Контакты
-		</LinkIntoView>
+			<LinkIntoView href="#promo" className={cx('News', 'hide')}>
+				Новости и акции
+			</LinkIntoView>
 
-		<MakeAnAppointmentDialog className={cx('hide')} />
-	</header>
-);
+			<LinkIntoView href="#contacts" className={cx('Contacts', 'hide')}>
+				Контакты
+			</LinkIntoView>
+
+			<MakeAnAppointmentDialog
+				className={cx('hide')}
+				applicationList={applicationList}
+			/>
+		</header>
+	);

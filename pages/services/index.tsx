@@ -1,29 +1,32 @@
-import { useRouter } from 'next/router';
+import { type ParsedUrlQuery } from 'querystring';
 
 import { Services } from '@/components/pages/Services/Services';
 
 import { fetchApi } from '@/lib/api/fetchApi';
 
-import { About, type Categories } from '@/types/http/homePage.type';
+interface Query extends ParsedUrlQuery {
+	category: string;
+}
 
-export const getStaticProps = async () => {
-	const categories = await fetchApi<Categories>('/categories', {
-		urlParamsObject: { populate: 'deep' },
+const ServicesPage = ({ subcategory, applicationList }: any) => (
+	<Services
+		applicationList={applicationList}
+		subcategory={subcategory.data[0]}
+	/>
+);
+
+ServicesPage.getInitialProps = async ({ query }: any) => {
+	const subcategory = await fetchApi(
+		`/subcategories?filters[text][$eq]=${
+			(query as Query).category ?? ''
+		}&populate=*`
+	);
+
+	const applicationList = await fetchApi<any>('/zapis-na-priems', {
+		urlParamsObject: { populate: 'deep, 2' },
 	});
 
-	return {
-		props: {
-			categories,
-		},
-		revalidate: 1,
-	};
-};
-
-const ServicesPage = ({ categories }: any) => {
-	const router = useRouter();
-	console.log('router', router.query);
-
-	return <Services categories={categories} path={router.query} />;
+	return { subcategory, applicationList };
 };
 
 export default ServicesPage;
