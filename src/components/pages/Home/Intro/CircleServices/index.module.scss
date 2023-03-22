@@ -116,6 +116,7 @@
 }
 
 .extraItem {
+	position: relative;
 	font-family: 'IBM Plex Sans', sans-serif;
 	font-style: normal;
 	font-weight: 700;
@@ -129,6 +130,27 @@
 	word-wrap: break-word;
 	@include respondBelow(900px) {
 		font-size: 3vw;
+	}
+}
+
+.arrow-back {
+	position: absolute;
+	width: 4vw;
+	object-fit: contain;
+	top: 10px;
+	left: 10px;
+	z-index: 100;
+	cursor: pointer;
+	max-width: 70px;
+	@include respondBelow(900px) {
+		width: 5vw;
+		top: 10px;
+		left: 0;
+	}
+	@include respondBelow(600px) {
+		width: 7vw;
+		top: -5px;
+		left: 0;
 	}
 }
 

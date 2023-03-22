@@ -7,6 +7,7 @@ import { useDataContext } from '@/context/DataContext';
 import { Circle, CircleWithIcon } from '../Circle';
 
 import circleImage from './circle.png';
+import back from './back.png';
 
 import cx from './index.module.scss';
 
@@ -80,6 +81,15 @@ export const CircleServices = () => {
 			{currentLevel.length > 6 && (
 				<div className={cx('extraItemsContainer')}>
 					<div className={cx('extraItems')}>
+						<Image
+							src={back}
+							alt="back"
+							className={cx('arrow-back')}
+							onClick={() => {
+								setCurrentLevel(categories.data);
+								setSelectedCategory('');
+							}}
+						/>
 						{currentLevel.map((item: any) => (
 							<Link
 								key={item.attributes.text}
