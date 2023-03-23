@@ -40,7 +40,7 @@
 	}
 	@include respondBelow(1700px) {
 		top: calc(50% - 2vw);
-		font-size: 3.5vw;
+		font-size: 3vw;
 	}
 	@include respondBelow(1400px) {
 		top: calc(50% - 2vw);
@@ -135,22 +135,22 @@
 
 .arrow-back {
 	position: absolute;
-	width: 4vw;
+	width: 5vw;
 	object-fit: contain;
-	top: 10px;
+	top: 50px;
 	left: 10px;
 	z-index: 100;
 	cursor: pointer;
 	max-width: 70px;
 	@include respondBelow(900px) {
 		width: 5vw;
-		top: 10px;
+		top: 40px;
 		left: 0;
 	}
 	@include respondBelow(600px) {
 		width: 7vw;
-		top: -5px;
-		left: 0;
+		top: 30px;
+		left: 5px;
 	}
 }
 

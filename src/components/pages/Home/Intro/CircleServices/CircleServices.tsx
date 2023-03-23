@@ -7,7 +7,7 @@ import { useDataContext } from '@/context/DataContext';
 import { Circle, CircleWithIcon } from '../Circle';
 
 import circleImage from './circle.png';
-import back from './back.png';
+import back from './Arrow.png';
 
 import cx from './index.module.scss';
 

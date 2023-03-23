@@ -7,7 +7,7 @@ $introBottomGap: 20px;
 	background-size: cover;
 	border-bottom: $introBottomGap solid $light;
 	min-height: calc(100vh - #{$layoutTopPadding} + #{$introBottomGap});
-
+	padding-bottom: 40px;
 	@include respondBelow(830px) {
 		min-height: calc(60vh - #{$layoutTopPadding} + #{$introBottomGap});
 	}
